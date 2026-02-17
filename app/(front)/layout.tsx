@@ -11,7 +11,9 @@ export default function Layout({children}:{children:ReactNode}) {
             <MegaMenu/>
           </div>
         </div>
-        {children}
+        <div className=' mt-[160px]'>
+          {children}
+        </div>
     </div>
   )
 }
