@@ -131,3 +131,54 @@ export async function updateUserById(id:string){
         }
     }
 }
+
+export async function getDoctors(){
+    try {
+        const doctors = await prismaClient.user.findMany({
+            where:{
+                role:"DOCTOR",
+            },
+            select:{
+                id:true,
+                name:true,
+                email:true,
+                slug:true,
+                phone:true,
+                doctorProfile:{
+                    select:{
+                        id:true,
+                        firstName:true,
+                        lastName:true,
+                        gender:true,
+                        bio:true,
+                        profilePicture:true,
+                        operationMode:true,
+                        hourlyWage:true,
+                        status:true,
+                        dob:true,
+                        availability:{
+                            select:{
+                                monday:true,
+                                tuesday:true,
+                                wednesday:true,
+                                thursday:true,
+                                friday:true,
+                                saturday:true,
+                                sunday:true,
+                            },
+                        },
+                    },
+                },
+            },
+        });
+
+        // return doctors 
+        return doctors as DoctorDetail[]; // Explicit cast here
+
+    }
+        //MORE THINGS HERE?
+        catch (error) {
+        console.log(error)
+        return null
+    }
+}

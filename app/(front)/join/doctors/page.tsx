@@ -12,13 +12,7 @@ export default function page() {
         "Integrated telehealth capabilities",
     ];
 
-    // const steps=[
-    //     "List your practice",
-    //     "Create competitive offerings",
-    //     "Start seeing patients",
-    // ];
-
-    const cards=[
+    const cards = [
         {title:"Begin Your Journey",
         description:"Start an new application to join our network of healthcare providers",
         link:"/register?role=DOCTOR&plan=free/",
@@ -43,49 +37,48 @@ export default function page() {
 
     // Create the FAQ array
     const faqs: FAQItem[] = [
-    {
-      question: "How do I book an appointment?",
-      answer: (
-        <span>
-          Simply click on <strong className="text-sky-600">&quot;Book Appointment&quot;</strong> at the top of the page, select your preferred provider, and follow the prompts.
-        </span>
-      )
-    },
-    {
-      question: "How can I reset my password?",
-      answer: (
-        <span>
-          To reset your password, click on the <strong className="text-sky-600">&quot;Forgot Password&quot;</strong> link on the login page. Enter your registered email, and we&apos;ll send you instructions to create a new password. If you need further assistance, please contact our support team.
-        </span>
-      )
-    },
-    {
-      question: "Is my personal data secure?",
-      answer: (
-        <span>
-          Yes, we prioritize your data security. All personal information is encrypted and stored according to industry standards. For more details, please see our{" "}
-          <a href="/privacy-policy" className="text-sky-600 underline">Privacy Policy</a>.
-        </span>
-      )
-    },
-    {
-      question: "What services are available through the app?",
-      answer: "Our app provides appointment booking, e-prescriptions, record management, and patient communications, all in one place."
-    },
-    {
-      question: "Can I use the platform for both virtual and in-person consultations?",
-      answer: "Yes, the platform is designed to support both virtual and in-person consultations seamlessly."
-    },
-    {
-      question: "How can I contact customer support?",
-      answer: (
-        <span>
-          You can reach our support team at any time via our <a href="/contact" className="text-sky-600 underline">Contact page</a> or call us at 1-800-555-HELP.
-        </span>
-      )
-    }
-  ];
-
+        {
+        question: "How do I book an appointment?",
+        answer: (
+            <span>
+            Simply click on <strong className="text-sky-600">&quot;Book Appointment&quot;</strong> at the top of the page, select your preferred provider, and follow the prompts.
+            </span>
+        )
+        },
+        {
+        question: "How can I reset my password?",
+        answer: (
+            <span>
+            To reset your password, click on the <strong className="text-sky-600">&quot;Forgot Password&quot;</strong> link on the login page. Enter your registered email, and we&apos;ll send you instructions to create a new password. If you need further assistance, please contact our support team.
+            </span>
+        )
+        },
+        {
+        question: "Is my personal data secure?",
+        answer: (
+            <span>
+            Yes, we prioritize your data security. All personal information is encrypted and stored according to industry standards. For more details, please see our{" "}
+            <a href="/privacy-policy" className="text-sky-600 underline">Privacy Policy</a>.
+            </span>
+        )
+        },
+        {
+        question: "What services are available through the app?",
+        answer: "Our app provides appointment booking, e-prescriptions, record management, and patient communications, all in one place."
+        },
+        {
+        question: "Can I use the platform for both virtual and in-person consultations?",
+        answer: "Yes, the platform is designed to support both virtual and in-person consultations seamlessly."
+        },
+        {
+        question: "How can I contact customer support?",
+        answer: (
+            <span>
+            You can reach our support team at any time via our <a href="/contact" className="text-sky-600 underline">Contact page</a> or call us at 1-800-555-HELP.
+            </span>
+        )
+        }
+    ];
 
     return(
         <div className="min-h-screen">
@@ -145,7 +138,6 @@ export default function page() {
                 </div>       
             </div>
             </section>
-
 
             <section className="py-12 px-4">
                 <div className="max-w-6xl gap-4 mx-auto">
