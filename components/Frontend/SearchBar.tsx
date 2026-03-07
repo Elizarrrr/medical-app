@@ -16,7 +16,7 @@ export default function SearchBar() {
                     className="block w-full py-3 px-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-full bg-gray-50 focus:ring-gray-900 focus:border-white" 
                     placeholder="Search..." 
                 />
-                <button type="submit" className="text-white absolute end-1.5 bottom-1.5 bg-sky-700 hover:bg-sky-900 focus:outline-none font-medium rounded-full text-sm px-4 py-2">Search</button>
+                <button type="submit" className="text-white absolute end-1.5 bottom-1.5 bg-sky-700 hover:bg-sky-800 focus:outline-none font-medium rounded-full text-sm px-4 py-2">Search</button>
             </div>
         </form>
     </div>

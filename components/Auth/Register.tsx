@@ -74,7 +74,7 @@ export default function RegisterWithBg({role="USER",plan=""}:{role?:string | str
 
           <div className="mt-4 text-center text-sm">
             Already have an account?{" "}
-            <Link href="/login" className="font-semibold text-green-600 hover:text-green-500">
+            <Link href="/login" className="font-semibold text-sky-700 hover:text-sky-600">
               Login
             </Link>
           </div>

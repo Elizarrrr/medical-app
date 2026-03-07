@@ -32,7 +32,7 @@ export default function TextInput<T extends FieldValues = FieldValues>({
       {type === "password" && page === "login" ? (
         <div className="flex items-center">
           <Label htmlFor={name}>{label}</Label>
-          <Link href="/forgot-password" className="ml-auto inline-block text-sm font-semibold text-green-600 hover:text-green-500">
+          <Link href="/forgot-password" className="ml-auto inline-block text-sm font-semibold text-sky-700 hover:text-sky-600">
             Forgot your password?
           </Link>
         </div>

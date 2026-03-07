@@ -81,7 +81,7 @@ export default function LoginFormWithBg() {
 
           <div className="mt-4 text-center text-sm">
             Don&apos;t have an account?{" "}
-            <Link href="/register" className="font-semibold text-green-600 hover:text-green-500">
+            <Link href="/register" className="font-semibold text-sky-700 hover:text-sky-600">
               Sign up
             </Link>
           </div>
