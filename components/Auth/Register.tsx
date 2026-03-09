@@ -60,9 +60,9 @@ export default function RegisterWithBg({role="USER",plan=""}:{role?:string | str
           </div>
           <form className="grid gap-4" onSubmit={handleSubmit(onSubmit)}>
                 
-            <TextInput label="Full Name" register={register} name="fullName" errors={errors} placeholder="eg John Doe"/>    
-            <TextInput label="Email Address" register={register} name="email" type="email" errors={errors} placeholder="eg johndoe@gmail.com"/>
-            <TextInput label="Phone Number" register={register} name="phone" type="tel" errors={errors} placeholder="eg +254700000000"/>
+            <TextInput label="Full Name" register={register} name="fullName" errors={errors} placeholder="John Doe"/>    
+            <TextInput label="Email Address" register={register} name="email" type="email" errors={errors} placeholder="johndoe@gmail.com"/>
+            <TextInput label="Phone Number" register={register} name="phone" type="tel" errors={errors} placeholder="+254700000000"/>
             <TextInput label="Password" register={register} name="password" type="password" errors={errors} placeholder="******"/>
            
             <SubmitButton title="Sign up" isLoading={isLoading} loadingTitle="Creating account please wait..."/>

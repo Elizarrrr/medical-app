@@ -70,7 +70,7 @@ export default function LoginFormWithBg() {
                 </Alert>
                 )}
           
-            <TextInput label="Email Address" register={register} name="email" type="email" errors={errors} placeholder="eg johndoe@gmail.com"/>
+            <TextInput label="Email Address" register={register} name="email" type="email" errors={errors} placeholder="johndoe@gmail.com"/>
             <TextInput label="Password" register={register} page="login" name="password" type="password" errors={errors} placeholder="******"/>
            
             <SubmitButton title="Login" isLoading={isLoading} loadingTitle="Signing you in please wait..."/>

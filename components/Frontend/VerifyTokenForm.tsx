@@ -126,7 +126,7 @@ export default function VerifyTokenForm({
         
                 
                     {/* <Button type="submit" className="rounded-md bg-black text-white w-auto hover:bg-slate-900">Submit</Button> */}
-                    <Button type="submit" disabled={loading} className="rounded-md bg-black text-white w-auto hover:bg-slate-900">
+                    <Button type="submit" disabled={loading}>
                     {loading ? "Verifying..." : "Submit"}
                     </Button>
                     {/*<SubmitButton title="Submit" isLoading={loading} loadingTitle="Verifying please wait..."/>*/}

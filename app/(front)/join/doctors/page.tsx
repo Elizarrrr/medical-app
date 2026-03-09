@@ -128,7 +128,7 @@ export default function page() {
                                         <h3 className="text-2xl font-semibold text-black dark:text-white">
                                             {card.title}
                                         </h3>
-                                        <p className="text-gray-800 text-xs py-3 dark:gray-200">{card.description}</p>
+                                        <p className="text-gray-800 text-xs py-3 dark:text-gray-200">{card.description}</p>
                                         <CustomButton title={card.linkTitle} href={card.link} className="bg-sky-700 text-white hover:bg-sky-800"/>
                                     </div>
                                 );

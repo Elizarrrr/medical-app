@@ -1,14 +1,15 @@
 import Footer from '@/components/Frontend/Footer'
-import Navbar from '@/components/Frontend/Navbar'
+import { SiteHeader } from '@/components/site-header'
+import { authOptions } from '@/lib/auth';
+import { getServerSession } from 'next-auth';
 import React, { ReactNode } from 'react'
 
-export default function Layout({children}:{children:ReactNode}) {
+export default async function Layout({children}:{children:ReactNode}) {
+  const session = await getServerSession(authOptions);
   return (
-    <div className='bg-white'>
-        <Navbar/>
-        <div className=' mt-[60px]'>
+    <div className=''>
+        <SiteHeader session={session}/>
           {children}
-        </div>
         <Footer/>
     </div>
   )
