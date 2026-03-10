@@ -27,10 +27,10 @@ export function SiteHeader({session}:{session:Session|null}) {
   const user = session?.user;
   const initials = generateInitials(user?.name);
   const router = useRouter();
-    async function handleLogout() {   
-      await signOut()
-      router.push("/login");
-    }
+  async function handleLogout() {   
+    await signOut()
+    router.push("/login");
+  }
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 dark:border-border">

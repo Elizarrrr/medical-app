@@ -47,7 +47,7 @@ export default function DoctorCard({
     ];
 
   return (
-    <div className="border border-gray-200 bg-slate-100 inline-flex flex-col py-8 px-6 rounded-md hover:border-gray-400 duration-300 transition-all dark:bg-slate-900 dark:border-gray-600 dark:hover:border-gray-400">
+    <div className="border border-gray-300 bg-slate-100 inline-flex flex-col py-8 px-6 rounded-md hover:border-gray-400 duration-300 transition-all dark:bg-slate-900 dark:border-gray-600 dark:hover:border-gray-400">
         
         <Link href="/doctors/slug">
             <h2 className="uppercase font-bold text-2xl">Vijal Patel</h2>
@@ -65,7 +65,7 @@ export default function DoctorCard({
                         <Stethoscope className="w-4 h-4 mr-2 flex-shrink-0"/>
                         <span>Family Medicine</span>
                     </p>
-                    <p className="bg-sky-200 dark:bg-teal-500 py-3 px-4 uppercase">
+                    <p className="bg-sky-200 dark:text-slate-900 py-3 px-4 uppercase">
                         Available Today
                     </p>
                 </div>
@@ -78,13 +78,13 @@ export default function DoctorCard({
                 {
                     timeStamps.slice(0,5).map((item,i)=>{
                         return (
-                        <Link className="bg-sky-600 dark:bg-teal-500 p-2 text-sm text-center text-white" key={i} href="#">
+                        <Link className="bg-sky-600 p-2 text-sm text-center text-white" key={i} href="#">
                             {item.time}{item.period}
                         </Link>
                         );
                     })
                 }
-                <Link className="text-[0.7rem] text-center bg-sky-700 dark:bg-teal-400 py-2 px-3 truncate text-white" href="/doctors/slug">
+                <Link className="text-[0.7rem] text-center bg-sky-700 py-2 px-3 truncate text-white" href="/doctors/slug">
                     More times
                 </Link>
             </div>

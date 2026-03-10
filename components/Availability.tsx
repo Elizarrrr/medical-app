@@ -52,7 +52,7 @@ export default function Availability() {
 
   return (
     <div className="mb-[200px]">
-        <h2 className="font-bold py-4 text-xl uppercase text-slate-800">Select a Date and Time</h2>
+        <h2 className="font-bold py-4 text-xl uppercase text-slate-800 dark:text-white">Select a Date and Time</h2>
         <div className="grid grid-cols-2 gap-4 lg:gap-0">
             <div className="sm:col-span-1 col-span-full">
                 <Calendar mode="single" selected={bookDate} onSelect={setBookDate} className="rounded-md border"/>
@@ -64,11 +64,11 @@ export default function Availability() {
                         {
                             timeStamps.slice(0,5).map((item,i)=>{
                                 return (
-                                <button className="bg-sky-600 dark:bg-teal-500 text-white p-2 text-sm text-center" key={i}>{item.time}{item.period}</button>
+                                <button className="bg-sky-600 text-white p-2 text-sm text-center" key={i}>{item.time}{item.period}</button>
                                 );
                             })
                         }
-                        <button className="text-[0.7rem] text-center bg-sky-700 dark:bg-teal-400 text-white py-2 px-3 truncate">More times</button>
+                        <button className="text-[0.7rem] text-center bg-sky-700 text-white py-2 px-3 truncate">More times</button>
                     </div>
                 </div>
             </div>

@@ -12,7 +12,7 @@ export default function DoctorDetails() {
                 onClick={()=>setIsActive("details")} 
                 className={
                     isActive==="details"
-                        ?"border py-4 px-8 bg-sky-600 text-white w-full uppercase dark:bg-teal-500 dark:text-black"
+                        ?"border py-4 px-8 bg-sky-600 text-white w-full uppercase"
                         :"border py-4 px-8 border-gray-200 bg-slate-100 w-full uppercase dark:text-black"
                     }
             >
@@ -22,7 +22,7 @@ export default function DoctorDetails() {
                 onClick={()=>setIsActive("availability")} 
                 className={
                     isActive==="availability"
-                        ?"border py-4 px-8 bg-sky-600 text-white w-full uppercase dark:bg-teal-500 dark:text-black"
+                        ?"border py-4 px-8 bg-sky-600 text-white w-full uppercase"
                         :"border py-4 px-8 border-gray-200 bg-slate-100 w-full uppercase dark:text-black"
                     }
             >

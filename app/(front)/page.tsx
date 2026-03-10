@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <section className="">
       <Hero/>
-      <Brands/>
+      {/* <Brands/> */}
       <TabbedSection/>
       <DoctorsList/>
       <DoctorsList className="bg-white py-8 lg:py-24 dark:bg-black" title="In-person doctor Visit" isInPerson={true}/>
