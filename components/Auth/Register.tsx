@@ -11,7 +11,7 @@ import toast from "react-hot-toast";
 // import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 
-export default function RegisterWithBg({role="USER",plan=""}:{role?:string | string[] | undefined;plan?:string | string[] | undefined}) {
+export default function RegisterWithBg({role="USER", plan=""}:{role?:string | string[] | undefined; plan?:string | string[] | undefined}) {
 
     const [isLoading, setIsLoading]=useState(false);
     const {register,handleSubmit,reset,formState:{errors}}=useForm<RegisterInputProps>();

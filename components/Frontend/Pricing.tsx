@@ -57,7 +57,7 @@ export default function Pricing() {
         <section className='py-14'>
             <div className="max-w-screen-xl mx-auto px-4 text-gray-600 md:px-8">
                 <div className='relative max-w-xl mx-auto sm:text-center'>
-                    <h3 className='text-gray-800 dark:text-slate-200 text-3xl font-semibold sm:text-4xl'>
+                    <h3 className='text-gray-800 dark:text-slate-200 text-3xl font-semibold sm:text-4xl scroll-m-20 tracking-tight lg:text-4xl'>
                         Pricing for all sizes
                     </h3>
                     {/* <div className='mt-3 max-w-xl'>
@@ -76,7 +76,7 @@ export default function Pricing() {
                                     ) : ""
                                 }
                                 <div className="p-8 space-y-4 border-b">
-                                    <span className='text-sky-700 font-medium uppercase dark:text-white tracking-widest'>
+                                    <span className='text-sky-700 font-medium uppercase tracking-widest'>
                                         {item.name}
                                     </span>
                                     <div className='text-gray-800 text-3xl font-semibold dark:text-gray-300'>
@@ -101,18 +101,18 @@ export default function Pricing() {
 
 
                                     
-                                    <Link href={item.getStarted} className=' px-3 py-3 block text-center rounded-lg w-full font-semibold text-sm duration-150 text-white bg-sky-700 hover:bg-sky-800 active:bg-sky-700 dark:text-black dark:bg-white dark:hover:bg-slate-100'>
+                                    <Link href={item.getStarted} className=' px-3 py-3 block text-center rounded-lg w-full font-semibold text-sm duration-150 text-white bg-sky-700 hover:bg-sky-800 active:bg-sky-700'>
                                         Get Started
                                     </Link>
                                 </div>
                                 <ul className='p-8 space-y-3'>
-                                    <li className="pb-2 text-gray-800 font-medium">
+                                    <li className="pb-2 text-gray-800 dark:text-gray-500  font-medium">
                                         <p>Features</p>
                                     </li>
                                     {
                                         item.features.map((featureItem, idx) => (
                                             <li key={idx} className='flex items-center gap-5'>
-                                                <Check className="h-5 w-5 text-sky-700 flex-shrink-0 dark:text-white"/>
+                                                <Check className="h-5 w-5 text-sky-700 flex-shrink-0"/>
                                                 {featureItem}
                                             </li>
                                         ))
