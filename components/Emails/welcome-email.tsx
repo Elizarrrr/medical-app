@@ -29,7 +29,7 @@ export const WelcomeEmail = ({
     <Body style={main}>
       <Container style={container}>
         <Img
-          src={`${baseUrl}/static/logo.png`}
+          src="https://fvu74p9nja.ufs.sh/f/4mL015KmC6OeCOLB3TpjJBaEz325hWw0MR614AdDkurLNqHl"
           width="32"
           height="32"
           alt="Claridy"

@@ -221,17 +221,24 @@ export async function completeProfile(id:string|undefined,data:any){
                 };
             }
 
-            //send a welcome email
-            const firstName = existingProfile.firstName;
-            const email = existingProfile.email as string;
-            const previewText = "Welcome to Online Doctors";
-            const message = "Thank you for joining Online Doctors!";
-            const sendMail = await resend.emails.send({
-                from: "Medical App <info@jazzafricaadventures.com>", //should be from the website used to verify your API key
-                to: email,
-                subject: "Welcome to Online Doctors",
-                react: WelcomeEmail({ firstName, previewText, message }),
-            });
+            // TRY to send a welcome email (but don't fail registration if email fails)
+            try {
+                const firstName = existingProfile.firstName;
+                const email = existingProfile.email as string;
+                const previewText = "Welcome to Oasis Hospital";
+                const message = "Thank you for joining Oasis Hospital!";
+                const sendMail = await resend.emails.send({
+                    from: "Oasis Hospital <info@jazzafricaadventures.com>", //should be from the website used to verify your API key
+                    to: email,
+                    subject: "Welcome to Oasis Hospital",
+                    react: WelcomeEmail({ firstName, previewText, message }),
+                });
+
+                console.log("Email sent:", sendMail);
+
+            } catch (emailError) {
+                  console.log("Email failed:", emailError);
+            }
 
             const updatedProfile = await prismaClient.doctorProfile.update({
                 where:{

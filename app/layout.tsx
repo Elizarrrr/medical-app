@@ -8,6 +8,7 @@ import { siteConfig } from "@/config/site";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
 import { ourFileRouter } from "./api/uploadthing/core";
+import { OnboardingContextProvider } from "@/context/context";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -88,7 +89,9 @@ export default function RootLayout({
               disableTransitionOnChange
             >
 
-              {children}
+              <OnboardingContextProvider>
+                {children}
+              </OnboardingContextProvider>
 
             </ThemeProvider>
         </Providers>

@@ -54,7 +54,7 @@ export default function OnboardingSteps({
                     steps.map((step,i)=>{
                         return(
                             // <Link key={i} href={`/onboarding/${id}?page=${step.page}`} className={cn("block py-3 px-4 bg-slate-300 dark:bg-slate-400 shadow-inner uppercase text-sm", step.page===page? "bg-teal-400 text-sm dark:bg-teal-600":"")}>{step.title}</Link>
-                            <Link key={i} href={`${pathname}?page=${step.page}`} className={cn("block py-3 px-4 bg-slate-300 dark:bg-slate-400 shadow-inner uppercase text-sm", step.page===page? "bg-teal-400 text-sm dark:bg-teal-600":"")}>{step.title}</Link>
+                            <Link key={i} href={`${pathname}?page=${step.page}`} className={cn("block py-3 px-4 bg-slate-300 dark:bg-slate-400 shadow-inner uppercase text-black text-sm", step.page===page? "bg-sky-700 text-white text-sm dark:bg-sky-700":"")}>{step.title}</Link>
                         );
                     })
                 }

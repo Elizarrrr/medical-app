@@ -6,41 +6,38 @@ import {
   Head,
   Html,
   Img,
-  Link,
   Preview,
   Section,
   Text,
 } from "@react-email/components";
-interface EmailTemplateProps {
+interface NewAppointmentEmailProps {
   firstName?: string;
-  token: number;
-  linkText: string;
+  link: string;
   message: string;
 }
  
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
  
-export const EmailTemplate = ({
+export const NewAppointmentEmail = ({
   firstName = "",
-  token,
-  linkText,
+  link,
   message,
-}: EmailTemplateProps) => (
+}: NewAppointmentEmailProps) => (
   <Html>
     <Head />
-    <Preview>{linkText}</Preview>
+    <Preview>New Appointment</Preview>
     <Body style={main}>
       <Container style={container}>
         <Img
-          src="https://fvu74p9nja.ufs.sh/f/4mL015KmC6OeCOLB3TpjJBaEz325hWw0MR614AdDkurLNqHl"
+          src={`${baseUrl}/static/logo.png`}
           width="32"
           height="32"
           alt="Claridy"
         />
  
-        <Text style={title}>
-          <strong>@{firstName}</strong>, thank you for Joining Us
-        </Text>
+        {/* <Text style={title}>
+          <strong>Dear Dr.{firstName}</strong>, You have a new Appointment
+        </Text> */}
  
         <Section style={section}>
           <Text style={text}>
@@ -48,25 +45,19 @@ export const EmailTemplate = ({
           </Text>
           <Text style={text}>{message}</Text>
  
-          <Button style={button}>{token}</Button>
+          <Button href={link} style={button}>
+            View Appointment
+          </Button>
           <Text style={text}>
             If you have any questions, feel free to reach out.
           </Text>
         </Section>
-        <Text style={links}>
-          <Link style={link}>Your security audit log</Link> ・{" "}
-          <Link style={link}>Contact support</Link>
-        </Text>
- 
-        <Text style={footer}>
-          GitHub, Inc. ・88 Colin P Kelly Jr Street ・San Francisco, CA 94107
-        </Text>
       </Container>
     </Body>
   </Html>
 );
  
-export default EmailTemplate;
+export default NewAppointmentEmail;
  
 const main = {
   backgroundColor: "#ffffff",
@@ -81,10 +72,10 @@ const container = {
   padding: "20px 0 48px",
 };
  
-const title = {
-  fontSize: "24px",
-  lineHeight: 1.25,
-};
+// const title = {
+//   fontSize: "24px",
+//   lineHeight: 1.25,
+// };
  
 const section = {
   padding: "24px",
@@ -107,18 +98,18 @@ const button = {
   padding: "0.75em 1.5em",
 };
  
-const links = {
-  textAlign: "center" as const,
-};
+// const links = {
+//   textAlign: "center" as const,
+// };
  
-const link = {
-  color: "#0366d6",
-  fontSize: "12px",
-};
+// const link = {
+//   color: "#0366d6",
+//   fontSize: "12px",
+// };
  
-const footer = {
-  color: "#6a737d",
-  fontSize: "12px",
-  textAlign: "center" as const,
-  marginTop: "60px",
-};
+// const footer = {
+//   color: "#6a737d",
+//   fontSize: "12px",
+//   textAlign: "center" as const,
+//   marginTop: "60px",
+// };

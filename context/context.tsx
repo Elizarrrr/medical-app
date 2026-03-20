@@ -2,7 +2,6 @@
 //context => useState at a global level
 
 import { createContext, ReactNode, useContext, useState } from "react";
-// import { BioDataFormProps, ContactInfoFormProps, ProfileFormProps } from "types/types";
 import { BioDataFormProps, ContactInfoFormProps, ProfileFormProps } from "@/types/types";
 
 //Steps for creating Context API

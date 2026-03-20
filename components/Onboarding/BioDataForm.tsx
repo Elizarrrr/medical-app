@@ -67,7 +67,6 @@ export default function BioDataForm({
         setIsLoading(false);
         return;
       }
-
       
       data.userId=userId as string;
       data.dob=dob;
@@ -75,7 +74,6 @@ export default function BioDataForm({
       data.page=page;
       console.log(data);
       
-
       try{
         //save data to db
         if(formId){

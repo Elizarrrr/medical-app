@@ -6,6 +6,7 @@ import bcrypt from "bcrypt";
 import {Resend} from "resend";
 import EmailTemplate from "../components/Emails/email-template";
 import generateSlug from "@/utils/generateSlug";
+// import { generateTrackingNumber } from "@/lib/generateTracking"; // ✅✅✅AUTO-CREATE DOCTOR PROFILE if role is DOCTOR
 
 export async function createUser(formData:RegisterInputProps) {
     const{fullName,email,phone,role,password,plan}=formData;
@@ -51,6 +52,27 @@ export async function createUser(formData:RegisterInputProps) {
             token: userToken,
         },
         });
+
+        // ✅✅✅AUTO-CREATE DOCTOR PROFILE if role is DOCTOR
+        // if (role === "DOCTOR") {
+        //     const nameParts = fullName.split(" ");
+        //     const firstName = nameParts[0] || "";
+        //     const lastName = nameParts.slice(1).join(" ") || "";
+
+        //     await prismaClient.doctorProfile.create({
+        //         data: {
+        //             userId: newUser.id,
+        //             trackingNumber: generateTrackingNumber(),
+        //             firstName: firstName,
+        //             lastName: lastName,
+        //             gender: "",
+        //             page: "bio-data",
+        //             dob: null,
+        //         },
+        //     });
+
+        //     console.log("✅ Doctor profile auto-created for:", email);
+        // }
 
         // TRY to send verification email (but don't fail registration if email fails)
         try {
