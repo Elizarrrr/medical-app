@@ -140,3 +140,162 @@
     </div>
     )
     }
+
+7.  tailwind.config.js
+    const flowbiteReact = require("flowbite-react/plugin/tailwindcss");
+
+    /** @type {import('tailwindcss').Config} */
+    module.exports = {
+        darkMode: ["class"],
+        content: [
+            "./app/**/*.{js,ts,jsx,tsx,mdx}",
+            "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+            "./components/**/*.{js,ts,jsx,tsx,mdx}",
+            ".flowbite-react\\class-list.json"
+        ],
+    theme: {
+        extend: {
+            borderRadius: {
+                lg: 'var(--radius)',
+                md: 'calc(var(--radius) - 2px)',
+                sm: 'calc(var(--radius) - 4px)'
+            },
+            colors: {
+                background: 'hsl(var(--background))',
+                foreground: 'hsl(var(--foreground))',
+                card: {
+                    DEFAULT: 'hsl(var(--card))',
+                    foreground: 'hsl(var(--card-foreground))'
+                },
+                popover: {
+                    DEFAULT: 'hsl(var(--popover))',
+                    foreground: 'hsl(var(--popover-foreground))'
+                },
+                primary: {
+                    DEFAULT: 'hsl(var(--primary))',
+                    foreground: 'hsl(var(--primary-foreground))'
+                },
+                secondary: {
+                    DEFAULT: 'hsl(var(--secondary))',
+                    foreground: 'hsl(var(--secondary-foreground))'
+                },
+                muted: {
+                    DEFAULT: 'hsl(var(--muted))',
+                    foreground: 'hsl(var(--muted-foreground))'
+                },
+                accent: {
+                    DEFAULT: 'hsl(var(--accent))',
+                    foreground: 'hsl(var(--accent-foreground))'
+                },
+                destructive: {
+                    DEFAULT: 'hsl(var(--destructive))',
+                    foreground: 'hsl(var(--destructive-foreground))'
+                },
+                border: 'hsl(var(--border))',
+                input: 'hsl(var(--input))',
+                ring: 'hsl(var(--ring))',
+                chart: {
+                    '1': 'hsl(var(--chart-1))',
+                    '2': 'hsl(var(--chart-2))',
+                    '3': 'hsl(var(--chart-3))',
+                    '4': 'hsl(var(--chart-4))',
+                    '5': 'hsl(var(--chart-5))'
+                }
+            }
+        }
+    },
+    plugins: [
+        require('@tailwindcss/forms'),
+        require("tailwindcss-animate"),
+        flowbiteReact
+    ],
+    }
+
+8.  next.config.ts
+    import type { NextConfig } from "next";
+    import withFlowbiteReact from "flowbite-react/plugin/nextjs";
+
+    const nextConfig: NextConfig = {
+    /* config options here */
+    };
+
+9.  package.json
+    {
+    "name": "medical-app",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "eslint",
+        "postinstall": "prisma generate"
+    },
+    "dependencies": {
+        "@auth/prisma-adapter": "^2.11.1",
+        "@headlessui/react": "^2.2.9",
+        "@heroicons/react": "^2.2.0",
+        "@hookform/resolvers": "^5.2.2",
+        "@prisma/client": "5.22.0",
+        "@radix-ui/react-accordion": "^1.2.12",
+        "@radix-ui/react-avatar": "^1.1.11",
+        "@radix-ui/react-checkbox": "^1.3.3",
+        "@radix-ui/react-dialog": "^1.1.15",
+        "@radix-ui/react-dropdown-menu": "^2.1.16",
+        "@radix-ui/react-label": "^2.1.8",
+        "@radix-ui/react-navigation-menu": "^1.2.14",
+        "@radix-ui/react-progress": "^1.1.8",
+        "@radix-ui/react-scroll-area": "^1.2.10",
+        "@radix-ui/react-select": "^2.2.6",
+        "@radix-ui/react-separator": "^1.1.8",
+        "@radix-ui/react-slot": "^1.2.4",
+        "@radix-ui/react-tabs": "^1.1.13",
+        "@radix-ui/react-toggle": "^1.1.10",
+        "@radix-ui/react-toggle-group": "^1.1.11",
+        "@radix-ui/react-tooltip": "^1.2.8",
+        "@react-email/components": "^1.0.8",
+        "@types/bcrypt": "^6.0.0",
+        "@uploadthing/react": "^7.3.3",
+        "bcrypt": "^6.0.0",
+        "class-variance-authority": "^0.7.1",
+        "clsx": "^2.1.1",
+        "cmdk": "^1.1.1",
+        "date-fns": "^4.1.0",
+        "flowbite": "^4.0.1",
+        "flowbite-react": "^0.12.16",
+        "framer-motion": "^12.29.2",
+        "input-otp": "^1.4.2",
+        "lucide-react": "^0.563.0",
+        "next": "16.1.5",
+        "next-auth": "^4.24.13",
+        "next-themes": "^0.4.6",
+        "prisma": "5.22.0",
+        "react": "19.2.3",
+        "react-datepicker": "^9.1.0",
+        "react-day-picker": "^9.13.2",
+        "react-dom": "19.2.3",
+        "react-email": "5.2.8",
+        "react-hook-form": "^7.71.2",
+        "react-hot-toast": "^2.6.0",
+        "react-icons": "^5.5.0",
+        "react-multi-carousel": "^2.8.6",
+        "resend": "6.9.2",
+        "tailwind-merge": "^3.4.0",
+        "tailwindcss-animate": "^1.0.7",
+        "uploadthing": "^7.7.4",
+        "vaul": "^1.1.2",
+        "zod": "^4.3.6"
+    },
+    "devDependencies": {
+        "@tailwindcss/forms": "^0.5.11",
+        "@types/node": "^20",
+        "@types/react": "^19",
+        "@types/react-dom": "^19",
+        "autoprefixer": "^10.4.23",
+        "eslint": "^9",
+        "eslint-config-next": "16.1.5",
+        "postcss": "^8.5.6",
+        "tailwindcss": "^3.4.19",
+        "typescript": "^5"
+    }
+    }

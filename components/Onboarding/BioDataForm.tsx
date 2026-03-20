@@ -24,6 +24,7 @@ export type StepFormProps={
   specialties?:Specialty[];
   doctorProfile:DoctorProfile
 };
+
 export default function BioDataForm({
   page,
   title,
@@ -142,7 +143,6 @@ export default function BioDataForm({
           <div className="grid gap-4 grid-cols-2">
                 <TextInput label="First Name" register={register} name="firstName" errors={errors} className="col-span-full sm:col-span-1"/>
                 <TextInput label="Last Name" register={register} name="lastName" errors={errors} className="col-span-full sm:col-span-1"/>
-                {/* <RadioInput radioOptions={genderOptions} title="Gender" name="gender" register={register} errors={errors} className="col-span-full sm:col-span-1"/> */}
                 <DatePickerInput className="col-span-full sm:col-span-1" date={dob} setDate={setDOB} title="Date of Birth"/>
                 <RadioInput radioOptions={genderOptions} title="Gender" name="gender" register={register} errors={errors} className="col-span-full sm:col-span-1"/>
           </div>
