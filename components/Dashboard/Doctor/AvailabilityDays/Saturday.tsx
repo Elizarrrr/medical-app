@@ -9,7 +9,7 @@ export default function Saturday({profile,day}:{profile:any,day:string}) {
 
     const availability = profile?.availability||"";
     
-    let initialData:string[] = ["7:00 AM"];
+    let initialData:string[] = ["8:00 AM"];
     if (profile && profile?.availability){
        initialData = profile?.availability[day]||[];
     }

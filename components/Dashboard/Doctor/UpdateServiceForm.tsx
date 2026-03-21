@@ -142,7 +142,7 @@ export default function UpdateServiceForm({
 
                     <div className="flex items-center justify-between border-b">
                     <h2 className="scroll-m-20 text-xl font-semibold tracking-tight py-2 mb-2">Update Price per Hour </h2>
-                        <Button disabled={savingPrice} onClick={handleUpdatePrice} className="bg-black text-white hover:bg-slate-900 dark:bg-white dark:text-black dark:hover:bg-slate-100">
+                        <Button disabled={savingPrice} onClick={handleUpdatePrice} className="">
                         {savingPrice?"Saving please wait...":"Update Price"}
                         </Button>
                     </div>
@@ -160,7 +160,7 @@ export default function UpdateServiceForm({
                 <div className="border shadow rounded-md p-4 mt-4">
                     <div className="flex items-center justify-between border-b">
                     <h2 className="scroll-m-20 text-xl font-semibold tracking-tight py-2 mb-2">Select your Operation Mode</h2>
-                        <Button disabled={savingMode} onClick={handleUpdateMode} className="bg-black text-white hover:bg-slate-900 dark:bg-white dark:text-black dark:hover:bg-slate-100">
+                        <Button disabled={savingMode} onClick={handleUpdateMode} className="">
                         {savingMode?"Saving please wait...":"Update Mode"}
                         </Button>
                     </div>
@@ -183,7 +183,7 @@ export default function UpdateServiceForm({
                 <div className="border shadow rounded-md p-4 mt-4">
                     <div className="flex items-center justify-between border-b">
                     <h2 className="scroll-m-20 text-xl font-semibold tracking-tight py-2 mb-2">Select the Service you want to Offer</h2>
-                        <Button disabled={savingServices} onClick={handleUpdateService} className="bg-black text-white hover:bg-slate-900 dark:bg-white dark:text-black dark:hover:bg-slate-100">
+                        <Button disabled={savingServices} onClick={handleUpdateService} className="">
                         {savingServices?"Saving please wait...":"Update Service"}
                         </Button>
                     </div>
@@ -204,7 +204,7 @@ export default function UpdateServiceForm({
                 <div className="border shadow rounded-md p-4">
                     <div className="flex items-center justify-between border-b">
                     <h2 className="scroll-m-20 text-xl font-semibold tracking-tight py-2 mb-2">Select your Specialty</h2>
-                        <Button disabled={savingSpecialty} onClick={handleUpdateSpecialty} className="bg-black text-white hover:bg-slate-900 dark:bg-white dark:text-black dark:hover:bg-slate-100">
+                        <Button disabled={savingSpecialty} onClick={handleUpdateSpecialty} className="">
                         {savingSpecialty?"Saving please wait...":"Update Specialty"}
                         </Button>
                     </div>

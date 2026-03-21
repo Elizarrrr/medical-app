@@ -30,15 +30,15 @@ export default function SelectedTimes({
         <div className="grid grid-cols-1 sm:grid-cols-2  border-gray-200 dark:border-gray-600 shadow rounded-md divide-x divide-gray-200">
             <div className="p-4">
                 <h2 className="font-semibold">Select the Times you are Available for this Day</h2>
-                <div className="py-6 flex flex-wrap grid grid-cols-3 gap-3">
-                            <button onClick={handleAddAll} className="flex items-center justify-center py-2 px-2 border border-green-300 rounded-md">
+                <div className="py-6 grid grid-cols-3 gap-3">
+                            <button onClick={handleAddAll} className="flex items-center justify-center py-2 px-2 border border-sky-300 rounded-md">
                                 <span>Add All</span>
                                 <Plus className="w-3 h-3 ml-2"/>
                             </button>
                     {
                         timesArray.map((time,i)=>{
                             return(
-                                <button onClick={()=>handleAddTime(time)} key={i} className="flex items-center justify-center py-2 px-2 border border-slate-200 rounded-md">
+                                <button onClick={()=>handleAddTime(time)} key={i} className="flex items-center justify-center py-2 px-2 border border-slate-200 dark:border-gray-600 rounded-md">
                                     <span>{time}</span>
                                     <Plus className="w-3 h-3 ml-2"/>
                                 </button>
@@ -48,12 +48,12 @@ export default function SelectedTimes({
                 </div>
             </div>
             <div className="p-4">
-                <h2 className="font-semibold">Here is your Selected Time for {day}</h2>
-                <div className="py-6 flex flex-wrap grid grid-cols-3 gap-3">
+                <h2 className="font-semibold">Here is your Selected Time for <span className="capitalize">{day}</span></h2>
+                <div className="py-6 grid grid-cols-3 gap-3">
                     {
                         selectedTimes.map((time,i)=>{
                             return(
-                                <button onClick={()=>handleRemoveTime(i)} key={i} className="flex items-center justify-center py-2 px-2 border border-green-500 bg-green-50 rounded-md dark:bg-slate-900 dark:text-white">
+                                <button onClick={()=>handleRemoveTime(i)} key={i} className="flex items-center justify-center py-2 px-2 border border-sky-500 bg-sky-50 rounded-md dark:bg-slate-900 dark:text-white">
                                     <span>{time}</span>
                                     <X className="w-3 h-3 ml-2"/>
                                 </button>

@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Tabs } from "flowbite-react";
+import { TabItem, Tabs } from "flowbite-react";
 import { DoctorProfile } from "@prisma/client";
 import Monday from "./AvailabilityDays/Monday";
 import Tuesday from "./AvailabilityDays/Tuesday";
@@ -47,17 +47,17 @@ export default function AvailabilitySettings({profile,}:{profile:DoctorProfile|u
         <div>
             <p className="py-3">Please add availability for the whole week</p>
 
-            {/* <Tabs aria-label="Tabs with underline" variant="underline">
+            <Tabs aria-label="Tabs with underline" variant="underline">
             {
                 tabs.map((tab,i)=>{
                     return(
-                        <Tabs.Item key={i} active title={tab.title}>
+                        <TabItem key={i} title={tab.title}> {/* No active prop needed */}
                          {tab.component}
-                        </Tabs.Item>
+                        </TabItem>
                     );
                 })
             }
-            </Tabs> */}
+            </Tabs>
         </div>
     );
 }
