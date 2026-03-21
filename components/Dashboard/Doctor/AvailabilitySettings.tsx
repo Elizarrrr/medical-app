@@ -47,7 +47,7 @@ export default function AvailabilitySettings({profile,}:{profile:DoctorProfile|u
         <div>
             <p className="py-3">Please add availability for the whole week</p>
 
-            <Tabs aria-label="Tabs with underline" variant="underline">
+            {/* <Tabs aria-label="Tabs with underline" variant="underline">
             {
                 tabs.map((tab,i)=>{
                     return(
@@ -57,7 +57,7 @@ export default function AvailabilitySettings({profile,}:{profile:DoctorProfile|u
                     );
                 })
             }
-            </Tabs>
+            </Tabs> */}
         </div>
     );
 }
