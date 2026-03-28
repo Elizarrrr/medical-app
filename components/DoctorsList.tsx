@@ -10,7 +10,7 @@ import { Button } from './ui/button'
 export default function DoctorsList({
   title="Telehealth Visit", 
   isInPerson,
-  className="bg-slate-100 py-8 lg:py-24 dark:bg-slate-950",
+  className="bg-slate-200 py-8 lg:py-24 dark:bg-slate-950",
 }:{
   title?:string; 
   isInPerson?:boolean;

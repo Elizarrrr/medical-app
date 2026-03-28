@@ -40,9 +40,10 @@ export default function UpdateServiceForm({
     const [selectedServiceId,setSelectedServiceId] = useState(initialServiceId);
     const [specialtyId,setSpecialtyId] = useState(initialSpecialtyId);
     const [operationMode,setOperationMode] = useState(initialOperationMode);
+    const [price,setPrice] = useState(initialPrice);
+    
     const [savingServices,setSavingServices] = useState(false);
     const [savingPrice,setSavingPrice] = useState(false);
-    const [price,setPrice] = useState(initialPrice);
     const [savingSpecialty,setSavingSpecialty] = useState(false);
     const [savingMode,setSavingMode] = useState(false);
 
@@ -139,27 +140,26 @@ export default function UpdateServiceForm({
 
                 <div className="border shadow rounded-md p-4 mt-4">
                     <div className="sm:col-span-4">
-
-                    <div className="flex items-center justify-between border-b">
-                    <h2 className="scroll-m-20 text-xl font-semibold tracking-tight py-2 mb-2">Update Price per Hour </h2>
-                        <Button disabled={savingPrice} onClick={handleUpdatePrice} className="">
-                        {savingPrice?"Saving please wait...":"Update Price"}
-                        </Button>
-                    </div>
-                    
-                    <div className="mt-2">
-                            <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-green-600 sm:max-w-md">
-                            <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm dark:text-gray-200">$</span>
-                            <input type="number" name="price" id="price" value={price} onChange={(e)=>setPrice(+e.target.value)} autoComplete="username" className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6 dark:text-white" placeholder="100"/>
+                        <div className="flex items-center justify-between border-b">
+                            <h2 className="scroll-m-20 text-xl font-semibold tracking-tight py-2 mb-2">Update Price per Hour </h2>
+                            <Button disabled={savingPrice} onClick={handleUpdatePrice} className="">
+                            {savingPrice?"Saving please wait...":"Update Price"}
+                            </Button>
+                        </div>
+                        
+                        <div className="mt-2">
+                            <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-teal-600 sm:max-w-md">
+                                <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm dark:text-gray-200">$</span>
+                                <input type="number" name="price" id="price" value={price} onChange={(e)=>setPrice(+e.target.value)} autoComplete="username" className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6 dark:text-white" placeholder="100"/>
                             </div>
-                        {/* <Button className="bg-black text-white hover:bg-slate-900">Update Price</Button> */}
-                    </div>
+                            {/* <Button className="bg-black text-white hover:bg-slate-900">Update Price</Button> */}
+                        </div>
                     </div>
                 </div>
 
                 <div className="border shadow rounded-md p-4 mt-4">
                     <div className="flex items-center justify-between border-b">
-                    <h2 className="scroll-m-20 text-xl font-semibold tracking-tight py-2 mb-2">Select your Operation Mode</h2>
+                        <h2 className="scroll-m-20 text-xl font-semibold tracking-tight py-2 mb-2">Select your Operation Mode</h2>
                         <Button disabled={savingMode} onClick={handleUpdateMode} className="">
                         {savingMode?"Saving please wait...":"Update Mode"}
                         </Button>
@@ -169,7 +169,7 @@ export default function UpdateServiceForm({
                             operationModes && operationModes.map((item,i)=>{
                                 const Icon = item.icon
                                 return(
-                                    <button key={i} onClick={()=>setOperationMode(item.title)} className={cn("border flex items-center justify-center flex-col py-2 px-3 rounded-md cursor-pointer", operationMode===item.title?"border-2 border-green-600 bg-slate-50 dark:bg-slate-900":"")}>
+                                    <button key={i} onClick={()=>setOperationMode(item.title)} className={cn("border flex items-center justify-center flex-col py-2 px-3 rounded-md cursor-pointer", operationMode===item.title?"border-2 border-teal-600 bg-slate-50 dark:bg-slate-900":"")}>
                                         {/* <Image src={item.imageUrl} alt={item.title} width={100} height={100} className="w-14 h-14"/> */}
                                         <Icon className="w-8 h-8"/>
                                         <p className="text-xs">{item.title}</p>
@@ -182,7 +182,7 @@ export default function UpdateServiceForm({
 
                 <div className="border shadow rounded-md p-4 mt-4">
                     <div className="flex items-center justify-between border-b">
-                    <h2 className="scroll-m-20 text-xl font-semibold tracking-tight py-2 mb-2">Select the Service you want to Offer</h2>
+                        <h2 className="scroll-m-20 text-xl font-semibold tracking-tight py-2 mb-2">Select the Service you want to Offer</h2>
                         <Button disabled={savingServices} onClick={handleUpdateService} className="">
                         {savingServices?"Saving please wait...":"Update Service"}
                         </Button>
@@ -191,7 +191,7 @@ export default function UpdateServiceForm({
                         {
                             services && services.map((item,i)=>{
                                 return(
-                                    <button key={i} onClick={()=>setSelectedServiceId(item.id)} className={cn("border flex items-center justify-center flex-col py-2 px-3 rounded-md cursor-pointer", selectedServiceId===item.id?"border-2 border-green-600 bg-slate-50 dark:bg-slate-900":"")}>
+                                    <button key={i} onClick={()=>setSelectedServiceId(item.id)} className={cn("border flex items-center justify-center flex-col py-2 px-3 rounded-md cursor-pointer", selectedServiceId===item.id?"border-2 border-teal-600 bg-slate-50 dark:bg-slate-900":"")}>
                                         <Image src={item.imageUrl} alt={item.title} width={100} height={100} className="w-14 h-14"/>
                                         <p className="text-xs">{item.title}</p>
                                     </button>
@@ -203,7 +203,7 @@ export default function UpdateServiceForm({
 
                 <div className="border shadow rounded-md p-4">
                     <div className="flex items-center justify-between border-b">
-                    <h2 className="scroll-m-20 text-xl font-semibold tracking-tight py-2 mb-2">Select your Specialty</h2>
+                        <h2 className="scroll-m-20 text-xl font-semibold tracking-tight py-2 mb-2">Select your Specialty</h2>
                         <Button disabled={savingSpecialty} onClick={handleUpdateSpecialty} className="">
                         {savingSpecialty?"Saving please wait...":"Update Specialty"}
                         </Button>
@@ -213,7 +213,7 @@ export default function UpdateServiceForm({
                             specialties && specialties.map((item,i)=>{
                                 return(
                                     // <div className="border flex items-center justify-center flex-col py-2 px-3 rounded-md cursor-pointer">
-                                    <button key={i} onClick={()=>setSpecialtyId(item.id)} className={cn("border flex items-center justify-center flex-col py-2 px-3 rounded-md cursor-pointer", specialtyId===item.id?"border-2 border-green-600 bg-slate-50 dark:bg-slate-900":"")}>
+                                    <button key={i} onClick={()=>setSpecialtyId(item.id)} className={cn("border flex items-center justify-center flex-col py-2 px-3 rounded-md cursor-pointer", specialtyId===item.id?"border-2 border-teal-600 bg-slate-50 dark:bg-slate-900":"")}>
                                         <p className="text-xs">{item.title}</p>
                                     </button>
                                 );

@@ -1,30 +1,38 @@
 import React from "react";
 import TabbedItems from "./TabbedItems";
+import { getServices } from "../../actions/services";
+import { getSpecialties } from "../../actions/specialties";
 
-const TabbedSection = () => {
+const TabbedSection = async () => {
+  const services = ((await getServices()).data)||[];
+  const specialties = ((await getSpecialties()).data)||[];
+
   return (
-    <section className="pb-12 pt-20 dark:bg-black lg:py-[60px]">
+    <section className="bg-white pb-12 pt-20 dark:bg-black lg:py-[60px]">
       <div className="container mx-auto">
         <div className="-mx-4 flex flex-wrap">
           <div className="w-full px-4">
             <div className="mx-auto mb-12 max-w-5xl text-center lg:mb-20">
-              <h2 className="mb-3 text-3xl font-bold leading-[1.2] text-dark dark:text-white sm:text-4xl md:text-[40px] scroll-m-20 pb-2 tracking-tight first:mt-0">
+              <h2 className="mb-3 text-3xl font-bold leading-[1.2] text-dark dark:text-white sm:text-4xl md:text-[40px]">
                 What We Offer
               </h2>
-              <p className="leading-7 [&:not(:first-child)]:mt-6 text-base text-body-color dark:text-dark-6">
+              <p className="text-base text-body-color dark:text-dark-6">
                 Access to top-rated providers at affordable rates and convenient online booking.
               </p>
             </div>
           </div>
         </div>
 
-        {/* TABS */}
+        {/*TABS*/}
         <div className="mx-auto max-w-6xl">
-           <TabbedItems/>
-        </div> 
+          <TabbedItems services={services} specialties={specialties}/>
+        </div>
       </div>
     </section>
   );
 };
 
 export default TabbedSection;
+
+
+

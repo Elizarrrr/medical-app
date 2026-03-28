@@ -47,7 +47,7 @@ export default function OnboardingSteps({
     console.log(currentStep)
 
     return(
-        <div className="grid grid-cols-12 mx-auto rounded-lg shadow-inner overflow-hidden border border-slate-200 dark:border-gray-700">
+        <div className="grid grid-cols-12 mx-auto rounded-lg shadow-inner border border-slate-200 dark:border-gray-700">
             <div className="col-span-full sm:col-span-3 bg-slate-100 min-h-screen divide-y-2 divide-gray-200 dark:bg-gray-900">
                 
                 {

@@ -46,24 +46,14 @@ export async function createManySpecialties(){
     try {
         const specialties=[
             {
-                title:"Gastroenterology",
-                //imageUrl:"https://utfs.io/f/4mL015KmC6OeUzj2TQxBnQY1oKvxUHIwzFc536ygduZTlhbV",
-                slug:"gastroenterology",
-            },
-            {
                 title:"Psychiatry",
                 //imageUrl:"https://utfs.io/f/4mL015KmC6OeAEuPdM4fypN9onMWquOs3wgU5RaK1FxXihGb",
                 slug:"psychiatry",
             },
             {
-                title:"Urology",
-                //imageUrl:"https://utfs.io/f/4mL015KmC6OeUbtPFcgxBnQY1oKvxUHIwzFc536ygduZTlhb",
-                slug:"urology",
-            },
-            {
-                title:"Cardiology",
-                //imageUrl:"https://utfs.io/f/4mL015KmC6OeQLsGQogix4q6TtKVDscdAEy5eBYjbIU7O8zR",
-                slug:"cardiology",
+                title:"Nutrition",
+                //imageUrl:"https://utfs.io/f/4mL015KmC6OeUzj2TQxBnQY1oKvxUHIwzFc536ygduZTlhbV",
+                slug:"nutrition",
             },
             {
                 title:"Pediatrics",
@@ -76,9 +66,34 @@ export async function createManySpecialties(){
                 slug:"dermatology",
             },
             {
-                title:"Dentistry",
+                title:"Urology",
+                //imageUrl:"https://utfs.io/f/4mL015KmC6OeUbtPFcgxBnQY1oKvxUHIwzFc536ygduZTlhb",
+                slug:"urology",
+            },
+            {
+                title:"Dental",
                 //imageUrl:"https://utfs.io/f/4mL015KmC6OeK2J7wvTpRvd8l2OCPiM4B5UX0zujITbSQrso",
-                slug:"dentistry",
+                slug:"dental",
+            },
+            {
+                title:"Cardiology",
+                //imageUrl:"https://utfs.io/f/4mL015KmC6OeQLsGQogix4q6TtKVDscdAEy5eBYjbIU7O8zR",
+                slug:"cardiology",
+            },
+            {
+                title:"Gastroenterology",
+                //imageUrl:"https://utfs.io/f/4mL015KmC6OeUzj2TQxBnQY1oKvxUHIwzFc536ygduZTlhbV",
+                slug:"gastroenterology",
+            },
+            {
+                title:"Neurology",
+                //imageUrl:"https://utfs.io/f/4mL015KmC6OeAEuPdM4fypN9onMWquOs3wgU5RaK1FxXihGb",
+                slug:"neurology",
+            },
+            {
+                title:"Orthopedics",
+                //imageUrl:"https://utfs.io/f/4mL015KmC6OeAEuPdM4fypN9onMWquOs3wgU5RaK1FxXihGb",
+                slug:"orthopedics",
             }
         ];
 

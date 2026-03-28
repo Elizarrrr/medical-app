@@ -4,111 +4,136 @@ import { prismaClient } from "@/lib/db";
 import { revalidatePath } from "next/cache";
 import { ServiceProps } from "@/types/types";
 
-// export async function createService(data:ServiceProps){
-//     try {
-//       const existingService =  await prismaClient.service.findUnique({
-//         where:{
-//             slug:data.slug
-//         }
-//       });
-//       if(existingService){
-//         return {
-//             data:null,
-//             status:409,
-//             error:"Service already exists"
-//         };
-//       }
+export async function createService(data:ServiceProps){
+    try {
+      const existingService =  await prismaClient.service.findUnique({
+        where:{
+            slug:data.slug
+        }
+      });
+      if(existingService){
+        return {
+            data:null,
+            status:409,
+            error:"Service already exists"
+        };
+      }
 
-//       const newService = await prismaClient.service.create({
-//         data,
-//       });
+      const newService = await prismaClient.service.create({
+        data,
+      });
 
-//       revalidatePath("/dashboard/services");
-//       console.log(newService);
+      revalidatePath("/dashboard/services");
+      console.log(newService);
 
-//       return {
-//           data:newService,
-//           status:201,
-//           error:null
-//       };
+      return {
+          data:newService,
+          status:201,
+          error:null
+      };
 
-//     } catch (error) {
-//         console.log(error)
-//         return{
-//             data:null,
-//             status:500,
-//             error,
-//         }
-//     }
-// }
+    } catch (error) {
+        console.log(error)
+        return{
+            data:null,
+            status:500,
+            error,
+        }
+    }
+}
 
-// export async function createManyServices(){
-//     try {
-//         const services=[
-//             {
-//                 title:"In-person doctor visit",
-//                 imageUrl:"https://utfs.io/f/4mL015KmC6OeUzj2TQxBnQY1oKvxUHIwzFc536ygduZTlhbV",
-//                 slug:"in-person-doctor-visit",
-//             },
-//             {
-//                 title:"Psychiatric consultation",
-//                 imageUrl:"https://utfs.io/f/4mL015KmC6OeAEuPdM4fypN9onMWquOs3wgU5RaK1FxXihGb",
-//                 slug:"psychiatric-consultation",
-//             },
-//             {
-//                 title:"Nutritional counseling",
-//                 imageUrl:"https://utfs.io/f/4mL015KmC6OeUbtPFcgxBnQY1oKvxUHIwzFc536ygduZTlhb",
-//                 slug:"nutritional-counseling",
-//             },
-//             {
-//                 title:"Telehealth consultation",
-//                 imageUrl:"https://utfs.io/f/4mL015KmC6OeQLsGQogix4q6TtKVDscdAEy5eBYjbIU7O8zR",
-//                 slug:"telehealth-consultation",
-//             },
-//             {
-//                 title:"Pediatric checkups",
-//                 imageUrl:"https://utfs.io/f/4mL015KmC6OexRJ0NfM60KaAvxU9MpwiXljQP3cNt4SmrTYG",
-//                 slug:"pediatric-checkups",
-//             },
-//             {
-//                 title:"Dermatology",
-//                 imageUrl:"https://utfs.io/f/4mL015KmC6OeHQQbVUU9VNczjTm8aLUPXO25GhqpgxAelywi",
-//                 slug:"dermatology",
-//             },
-//             {
-//                 title:"UTI consultation",
-//                 imageUrl:"https://utfs.io/f/4mL015KmC6OeK2J7wvTpRvd8l2OCPiM4B5UX0zujITbSQrso",
-//                 slug:"uti-consultation",
-//             }
-//         ];
+export async function createManyServices(){
+    try {
+        const services=[
+            {
+                title:"In-person doctor visit",
+                imageUrl:"https://utfs.io/f/4mL015KmC6Oe6ckqMrwxtMyWs8G69zwnPRk2ieFTCcqfaAbS",
+                slug:"in-person-doctor-visit",
+            },
+            {
+                title:"Mental health care",
+                imageUrl:"https://utfs.io/f/4mL015KmC6OeAEuPdM4fypN9onMWquOs3wgU5RaK1FxXihGb",
+                slug:"mental-health-care",
+            },
+            {
+                title:"Nutritional counseling",
+                imageUrl:"https://utfs.io/f/4mL015KmC6OeUbtPFcgxBnQY1oKvxUHIwzFc536ygduZTlhb",
+                slug:"nutritional-counseling",
+            },
+            {
+                title:"Telehealth consultation",
+                imageUrl:"https://utfs.io/f/4mL015KmC6OeQLsGQogix4q6TtKVDscdAEy5eBYjbIU7O8zR",
+                slug:"telehealth-consultation",
+            },
+            {
+                title:"Pediatric care",
+                imageUrl:"https://utfs.io/f/4mL015KmC6OexRJ0NfM60KaAvxU9MpwiXljQP3cNt4SmrTYG",
+                slug:"pediatric-care",
+            },
+            {
+                title:"Dermatologic care",
+                imageUrl:"https://utfs.io/f/4mL015KmC6OeHQQbVUU9VNczjTm8aLUPXO25GhqpgxAelywi",
+                slug:"dermatologic-care",
+            },
+            {
+                title:"Kidney care",
+                imageUrl:"https://utfs.io/f/4mL015KmC6OeK2J7wvTpRvd8l2OCPiM4B5UX0zujITbSQrso",
+                slug:"kidney-care",
+            },
+            {
+                title:"Dental care",
+                imageUrl:"https://utfs.io/f/4mL015KmC6Oe03Ed8m7HvksjDSYh7a2pfyX3Mn0dureVLoqT",
+                slug:"dental-care",
+            },
+            {
+                title:"Cardiac care",
+                imageUrl:"https://utfs.io/f/4mL015KmC6OexcadF8M60KaAvxU9MpwiXljQP3cNt4SmrTYG",
+                slug:"cardiac-care",
+            },
+            {
+                title:"Digestive care",
+                imageUrl:"https://utfs.io/f/4mL015KmC6OeP4gttE2nXpf6KTYiBqaseboR2NtOWlFrVhDZ",
+                slug:"digestive-care",
+            },
+            {
+                title:"Neurological care",
+                imageUrl:"https://utfs.io/f/4mL015KmC6OexhycP7M60KaAvxU9MpwiXljQP3cNt4SmrTYG",
+                slug:"neurological-care",
+            },
+            {
+                title:"Bone & joint care",
+                imageUrl:"https://utfs.io/f/4mL015KmC6OeSxw0bJZdDixpjJFOa5BQkz0rRYM7ov1scP6t",
+                slug:"bone-joint-care",
+            }
+        ];
 
        
-//         for (const service of services) {
-//             try {
-//                 await createService(service)
-//                 // //Create service in the database
-//                 // await prisma.service.create({
-//                 //     data:{
-//                 //         title:service.title,
-//                 //         slug:service.slug,
-//                 //         imageUrl:service.imageUrl,
-//                 //     },
-//                 // });
-//                 // console.log(`Service "${service.title}" created successfully.`);
-//             } catch (error) {
-//                 console.error(`Error creating service "${service.title}":`, error)
-//             }
-//         }
+        for (const service of services) {
+            try {
+                await createService(service)
+                // //Create service in the database
+                // await prisma.service.create({
+                //     data:{
+                //         title:service.title,
+                //         slug:service.slug,
+                //         imageUrl:service.imageUrl,
+                //     },
+                // });
+                // console.log(`Service "${service.title}" created successfully.`);
+            } catch (error) {
+                console.error(`Error creating service "${service.title}":`, error)
+            }
+        }
 
-//     } catch (error) {
-//         console.log(error)
-//         return{
-//             data:null,
-//             status:500,
-//             error,
-//         }
-//     }
-// }
+    } catch (error) {
+        console.log(error)
+        return{
+            data:null,
+            status:500,
+            error,
+        }
+    }
+}
 
 export interface ServiceWithDoctorProfilesCount {
     id: string;

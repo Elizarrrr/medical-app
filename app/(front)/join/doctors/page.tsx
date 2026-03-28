@@ -31,7 +31,7 @@ export default function page() {
         {title:"Track Your Progress",
             description:"Monitor the status of your application and approval",
             link:"/",
-            linkTitle:"Check Status"
+            linkTitle:"Check status"
         }
     ];
 

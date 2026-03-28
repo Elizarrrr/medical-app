@@ -4,12 +4,11 @@ import { AlarmClock, Bell, CalendarDays, Home, LayoutGrid, Mail, Microscope, Set
 import Link from "next/link";
 import React from "react";
 import { Button } from "@/components/ui/button";
-// import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Session } from "next-auth";
-import { usePathname } from "next/navigation";
 import Image from "next/image";
-// import { signOut } from "next-auth/react";
+import { signOut } from "next-auth/react";
 
 {/*
 export const description =
@@ -60,12 +59,12 @@ export default function Sidebar({session}:{session:Session}) {
   // let sideBarLinks = roles[role] || [];
   const sideBarLinks = roles[role] || [];
 
-  // const router = useRouter();
+  const router = useRouter();
 
-  // async function handleLogout(){
-  //   await signOut()
-  //   router.push("/login")
-  // }
+  async function handleLogout(){
+    await signOut()
+    router.push("/login")
+  }
 
   return (
     <div className="hidden border-r bg-muted/40 md:block">
@@ -116,7 +115,7 @@ export default function Sidebar({session}:{session:Session}) {
             </nav>
           </div>
           {/* <div className="mt-auto p-4">
-          <Button size="sm" className="bg-black text-white hover:bg-slate-900 w-full">
+          <Button size="sm" className="w-full">
             <Power className="w-4 h-4 mr-1"/>
             Logout
           </Button>

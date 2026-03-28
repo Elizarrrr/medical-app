@@ -5,18 +5,47 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 
-// import AnalyticsCard from "../AnalyticsCard"
+import Link from "next/link"
+import AnalyticsCard from "../AnalyticsCard"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-// import { getAdminAnalytics } from "../../actions/stats"
 import { getServerSession } from "next-auth"
 import { authOptions } from "@/lib/auth"
 import { generateInitials } from "../../utils/generateInitials"
 import { Button } from "@/components/ui/button"
-import Link from "next/link"
 import { getDoctors } from "@/actions/users"
+import { getAdminAnalytics } from "@/actions/stats"
 
 export default async function Dashboard() {
-//   const analytics = await getAdminAnalytics();
+
+  // const stats = await getStats();
+  // const statsCards = [
+  //   {
+  //     title:"Doctors",
+  //     icon:Users,
+  //     count:stats.doctors,
+  //     href:"/dashboard/doctors"
+  //   },
+  //   {
+  //     title:"Patients",
+  //     icon:UsersRound,
+  //     count:stats.patients,
+  //     href:"/dashboard/patients"
+  //   },
+  //   {
+  //     title:"Appointments",
+  //     icon:CalendarDays,
+  //     count:stats.appointments,
+  //     href:"/dashboard/appointments"
+  //   },
+  //   {
+  //     title:"Services",
+  //     icon:LayoutGrid,
+  //     count:stats.services,
+  //     href:"/dashboard/services"
+  //   },
+  // ]
+
+  const analytics = await getAdminAnalytics();
   const doctors = await getDoctors()||[];
   const session = await getServerSession(authOptions);
   const user = session?.user;
@@ -52,13 +81,13 @@ export default async function Dashboard() {
          <h1 className="scroll-m-20 text-2xl font-extrabold tracking-tight mb-3">
               Welcome, Admin {user?.name}
           </h1>
-          {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {analytics.map((item,i)=>{
                   return (
                       <AnalyticsCard key={i} data={item}/>
                   );
               })}
-          </div> */}
+          </div>
 
         <div className="grid gap-4 md:gap-8 lg:grid-cols-2">
           <Card>
@@ -95,7 +124,6 @@ export default async function Dashboard() {
                   );
                 })
               }
-
             </CardContent>
           </Card>
         </div>
