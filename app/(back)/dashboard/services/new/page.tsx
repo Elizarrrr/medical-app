@@ -4,7 +4,7 @@ import ServiceForm from "@/components/Dashboard/ServiceForm";
 export default function page() {
     return(
         <div>
-            <ServiceForm className="text-black" title="Create Service"/>
+            <ServiceForm className="text-black dark:text-white" title="Create Service"/>
         </div>
     );
 }

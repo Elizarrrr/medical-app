@@ -25,7 +25,7 @@ export default function SelectInput<T extends FieldValues = FieldValues>({
 }: SelectInputProps<T>) {
   return (
     <div className={className}>
-      <label htmlFor={name} className="block text-sm font-medium leading-6 text-gray-900">
+      <label htmlFor={name} className="block text-sm font-medium leading-6">
         {label}
       </label>
       <div className="mt-2">

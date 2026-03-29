@@ -5,7 +5,7 @@ import React from "react";
 export default function page() {
     return(
         <div>
-            <SpecialtyForm className="text-black" title="Create Specialty"/>
+            <SpecialtyForm className="text-black dark:text-white" title="Create Specialty"/>
         </div>
     );
 }

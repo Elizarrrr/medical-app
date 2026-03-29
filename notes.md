@@ -515,3 +515,306 @@
         </div> 
     )
     }
+
+14. ProfessionInfo.tsx
+    HOW TO USE ARRAY INPUT
+    const [otherSpecialties, setOtherSpecialties] = useState([]);
+
+    <ArrayItemsInput
+        items={skills}
+        setItems={setSkills}
+        itemTitle="Skill"
+    />
+
+    HOW TO USE MULTIPLE IMAGE INPUT
+    const [docs, setDocs] = useState([]);
+
+    <MultipleImageInput 
+        label="Upload your academic documents" 
+        imageUrls={docs} 
+        setImageUrls={setDocs} 
+        endpoint="doctorProfessionDocs" // this endpoint is for pdf and NOT image --> core.ts
+    />
+
+    HOW TO USE MULTIPLE FILE UPLOAD
+    const [docs, setDocs] = useState([]);
+
+    <MultipleFileUpload 
+        label="Upload your academic documents" 
+        files={docs} 
+        setFiles={setDocs} 
+        endpoint="doctorProfessionDocs"
+    />
+
+15. MultipleImageInput.tsx
+    import { UploadDropzone } from "../../utils/uploadthing";
+    import {Pencil, XCircle} from "lucide-react";
+    import Image from "next/image";
+    import React from "react";
+    import toast from "react-hot-toast";
+
+    type MultipleImageInputProps = {
+        label: string;
+        imageUrls: string[];
+        setImageUrls: any;
+        className?: string;
+        endpoint?: any;
+    };
+
+    export default function MultipleImageInput({
+        label,
+        imageUrls,
+        setImageUrls,
+        className = "col-span-full",
+        endpoint="",
+    }:  MultipleImageInputProps) {
+        function handleImageRemove(imageIndex:any){
+            const updatedImages = imageUrls.filter(
+                (image, index) => index !== imageIndex
+            );
+            setImageUrls(updatedImages);
+        }
+        return(
+            <div className={className}>
+                <div className="flex justify-between items-center mb-4">
+                    <label
+                    htmlFor="course-image"
+                    className="block text-sm font-medium leading-6 text-gray-900 dark:text-slate-50 mb-2"
+                    >
+                        {label}
+                    </label>
+                </div>
+                    {imageUrls.length > 0 ? (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                            {imageUrls.map ((imageUrl, i)=>{
+                                return(
+                                    <div key={i} className="relative mb-6">
+                                        <button
+                                            onClick={()=>handleImageRemove(i)}
+                                            className="absolute -top-4 -right-2 bg-slate-100 text-slate-900 rounded-full"
+                                        >
+                                            <XCircle className=""/>
+                                        </button>
+                                        <Image 
+                                            src={imageUrl} 
+                                            alt="Item image"
+                                            width={1000}
+                                            height={667}
+                                            className="w-full h-32 object-cover"
+                                        />
+                                    </div>
+                                );
+                            })}
+                        </div>  
+                ) : (
+                    <UploadDropzone
+                        endpoint={endpoint}
+                        onClientUploadComplete={(res) => {
+                            console.log(res);
+                            const urls = res.map((item) => item.url);
+                            setImageUrls(urls);
+                            console.log(urls);
+                            console.log("Upload Completed");
+                        }}
+                        onUploadError={(error) => {
+                            toast.error("Failed to upload image");
+                            //Do something with the error
+                            console.log(`ERROR! ${error.message}`, error);
+                        }}
+                    />
+                )}
+            </div>
+        );
+    }
+
+16. ImageInput.tsx
+    import {Pencil} from "lucide-react";
+    import Image from "next/image";
+    import React from "react";
+    import toast from "react-hot-toast";
+    import { UploadDropzone } from "../../utils/uploadthing";
+
+    // Define types for the props
+    type ImageInputProps = {
+        label: string;
+        imageUrl: string;
+        setImageUrl: React.Dispatch<React.SetStateAction<string>>; // Proper type for setter function
+        className?: string;
+        endpoint: string; // endpoint is likely a string
+    };
+
+    // export default function ImageInput({
+    //     label,
+    //     imageUrl="",
+    //     setImageUrl="",
+    //     className="col-span-full",
+    //     endpoint="",
+    // }:{ 
+    //     label:string;
+    //     imageUrl:string;
+    //     //imageUrl:any;                //CHANGED MYSELF
+    //     setImageUrl:any;
+    //     className?:string;
+    //     endpoint:any;
+    // }) {
+
+    export default function ImageInput({
+        label,
+        imageUrl = "",
+        setImageUrl,
+        className = "col-span-full",
+        endpoint,
+        }: ImageInputProps) {
+        return(
+            <div className={className}>
+                <div className="flex justify-between items-center mb-4">
+                    <label
+                    htmlFor="course-image"
+                    className="block text-sm font-medium leading-6 text-gray-900 dark:text-slate-50 mb-2"
+                    >
+                        {label}
+                    </label>
+                    {imageUrl && (
+                        <button
+                        onClick={()=>setImageUrl("")}
+                        type="button"
+                        className="flex space-x-2 bg-slate-900 rounded-md shadow text-slate-50 py-2 px-4"
+                        >
+                            <Pencil className="w-5 h-5"/>
+                            <span>Change Image</span>
+                        </button>
+                    )}
+                </div>
+                {imageUrl ? (
+                    <Image src={imageUrl} 
+                        alt="Item image"
+                        width={1000}
+                        height={667}
+                        className="w-full h-64 object-contain"
+                    />
+                ) : (
+                    <UploadDropzone
+                        // endpoint={`${endpoint}` as any}
+                        endpoint={endpoint as "doctorProfileImage" | "serviceImage" | "doctorProfessionDocs"}
+                        // onClientUploadComplete={(res:any)=>{
+
+                        // onClientUploadComplete={(res: { url: string }[]) => {
+                        //     setImageUrl(res[0].url);
+                        //     //Do something with the response
+                        //     toast.success("Image uploaded successfully");
+                        //     console.log("Files", res);
+                        //     console.log("Upload Completed");
+                        // }}
+
+                        onClientUploadComplete={(res) => {  // TypeScript will infer automatically
+                            setImageUrl(res[0].url);
+                            toast.success("Image uploaded successfully");
+                        }}
+
+                        // onUploadError={(error:any)=>{
+                        onUploadError={(error: Error) => { // Type error as `Error`
+                            toast.error("Failed to upload image");
+                            //Do something with the error
+                            console.log(`ERROR! ${error.message}`, error);
+                        }}
+                    />
+                )}
+            </div>
+        );
+    }
+
+17. updateAppointmentById
+
+    export async function updateAppointmentById(id:string, patientId:string, data:AppointmentUpdateProps){
+        try {
+        const updatedAppointment = await prismaClient.appointment.update({
+            where:{
+                id,
+            },
+            data,
+        });
+
+        const patientId = updatedAppointment.patientId;
+        const patient = await prismaClient.user.findUnique({
+            where:{
+                id:patientId,
+            },
+        })
+        const firstName = patient?.name;
+        const  doctorMail = patient?.email;
+        const link = `${baseUrl}/dashboard/user/appointments/view/${updatedAppointment.id}`;
+        const message =
+        "Your appointment has been approved. Click the button below to view the details";
+        const sendMail = await resend.emails.send({
+        from: "Medical App <info@jazzafricaadventures.com>", //should be from the website used to verify your API key
+        to: doctorMail??"",
+        subject: "Appointment Approved",
+        react: NewAppointmentEmail({ firstName, link, message }),
+        });
+
+        revalidatePath("/dashboard/doctor/appointments");
+        revalidatePath("/dashboard/user/appointments");
+        console.log(updatedAppointment);
+
+        return {
+            data:updatedAppointment,
+            status:201,
+            error:null
+        };
+
+        } catch (error) {
+            console.log(error)
+            return{
+                data:null,
+                status:500,
+                error,
+            }
+        }
+    }
+
+18. createAppointment
+
+    export async function createAppointment(data:AppointmentProps){
+        
+        try {
+            const doctor = await prismaClient.user.findUnique({
+                where:{
+                    id:data.doctorId,
+                },
+            });
+            const newAppointment = await prismaClient.appointment.create({
+                data,
+            });
+
+            const firstName = doctor?.name;
+            const  doctorMail = doctor?.email;
+            const link = `${baseUrl}/dashboard/doctor/appointments/view/${newAppointment.id}`;
+            const message =
+            "You have a new appointment scheduled. Please review and approve it by clicking the button below";
+            const sendMail = await resend.emails.send({
+            from: "Medical App <info@jazzafricaadventures.com>", //should be from the website used to verify your API key
+            to: doctorMail??"",
+            subject: "New Appointment Approval Needed",
+            react: NewAppointmentEmail({ firstName, link, message }),
+            });
+
+            revalidatePath("/dashboard/doctor/appointments");
+            console.log(newAppointment);
+
+            //Send the Email to the Doctor
+
+            return {
+                data:newAppointment,
+                status:201,
+                error:null
+            };
+
+        } catch (error) {
+            console.log(error)
+            return{
+                data:null,
+                status:500,
+                error,
+            }
+        }
+    }

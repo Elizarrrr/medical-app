@@ -14,11 +14,14 @@ const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 export async function createAppointment(data:AppointmentProps){
     
     try {
+        // Get doctor details for email notification
         const doctor = await prismaClient.user.findUnique({
             where:{
                 id:data.doctorId,
             },
         });
+        
+        // Create the appointment in the database
         const newAppointment = await prismaClient.appointment.create({
             data,
         });
@@ -28,17 +31,23 @@ export async function createAppointment(data:AppointmentProps){
         const link = `${baseUrl}/dashboard/doctor/appointments/view/${newAppointment.id}`;
         const message =
         "You have a new appointment scheduled. Please review and approve it by clicking the button below";
-        const sendMail = await resend.emails.send({
-        from: "Medical App <info@jazzafricaadventures.com>", //should be from the website used to verify your API key
-        to: doctorMail??"",
-        subject: "New Appointment Approval Needed",
-        react: NewAppointmentEmail({ firstName, link, message }),
-        });
+        
+        // TRY to send email (but don't fail if email fails)
+        try {
+            const sendMail = await resend.emails.send({
+                from: "Medical App <info@jazzafricaadventures.com>",
+                to: doctorMail??"",
+                subject: "New Appointment Approval Needed",
+                react: NewAppointmentEmail({ firstName, link, message }),
+            });
+            console.log("Email sent successfully:", sendMail);
+        } catch (emailError) {
+            // Email failed but appointment is still created
+            console.warn("Failed to send email, but appointment was created:", emailError);
+        }
 
         revalidatePath("/dashboard/doctor/appointments");
         console.log(newAppointment);
-
-        //Send the Email to the Doctor
 
         return {
             data:newAppointment,
@@ -243,6 +252,7 @@ export async function updateAppointment(id:string, data:AppointmentProps){
 
 export async function updateAppointmentById(id:string, patientId:string, data:AppointmentUpdateProps){
     try {
+      // Update the appointment in the database
       const updatedAppointment = await prismaClient.appointment.update({
         where:{
             id,
@@ -250,6 +260,7 @@ export async function updateAppointmentById(id:string, patientId:string, data:Ap
         data,
       });
 
+      // Get patient details for email notification
       const patientId = updatedAppointment.patientId;
       const patient = await prismaClient.user.findUnique({
         where:{
@@ -261,12 +272,20 @@ export async function updateAppointmentById(id:string, patientId:string, data:Ap
       const link = `${baseUrl}/dashboard/user/appointments/view/${updatedAppointment.id}`;
       const message =
       "Your appointment has been approved. Click the button below to view the details";
-      const sendMail = await resend.emails.send({
-      from: "Medical App <info@jazzafricaadventures.com>", //should be from the website used to verify your API key
-      to: doctorMail??"",
-      subject: "Appointment Approved",
-      react: NewAppointmentEmail({ firstName, link, message }),
-      });
+      
+      // TRY to send email (but don't fail if email fails)
+      try {
+        const sendMail = await resend.emails.send({
+          from: "Medical App <info@jazzafricaadventures.com>",
+          to: doctorMail??"",
+          subject: "Appointment Approved",
+          react: NewAppointmentEmail({ firstName, link, message }),
+        });
+        console.log("Email sent successfully:", sendMail);
+      } catch (emailError) {
+        // Email failed but appointment is still updated
+        console.warn("Failed to send email, but appointment was updated:", emailError);
+      }
 
       revalidatePath("/dashboard/doctor/appointments");
       revalidatePath("/dashboard/user/appointments");

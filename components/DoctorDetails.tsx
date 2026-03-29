@@ -16,6 +16,7 @@ import toast from "react-hot-toast";
 import { createAppointment } from "../actions/appointments";
 import { Appointment } from "@prisma/client";
 import { AppointmentProps, DoctorDetail } from "@/types/types";
+import MultipleFileUpload, { FileProps } from "./FormInputs/MultipleFileUpload";
 
 export default function DoctorDetails({doctor,appointment}:{doctor:DoctorDetail; appointment:Appointment|null}) {
     const [isActive,setIsActive]=useState("availability");
@@ -31,7 +32,7 @@ export default function DoctorDetails({doctor,appointment}:{doctor:DoctorDetail;
     const [dob, setDOB] = useState<Date | undefined>(undefined);
     console.log(longDate);
     const times = doctor.doctorProfile?.availability?.[day] ?? null;
-    //const [medicalDocs,setMedicalDocs] = useState<File>([]);
+    const [medicalDocs,setMedicalDocs] = useState<FileProps[]>([]);
     const genderOptions = [{label:"Male",value:"male"},{   label:"Female",value:"female"}];
     // const [imageUrl,setImageUrl] = useState(initialImageUrl);
     const router = useRouter();
@@ -97,7 +98,7 @@ export default function DoctorDetails({doctor,appointment}:{doctor:DoctorDetail;
                             onClick={()=>setIsActive("details")} 
                             className={
                                 isActive==="details"
-                                ?"border py-4 px-8 bg-sky-600 text-white w-full uppercase"
+                                ?"border py-4 px-8 bg-sky-700 text-white w-full uppercase"
                                 :"border py-4 px-8 border-gray-200 bg-slate-100 w-full uppercase dark:text-black"
                             }
                         >
@@ -108,7 +109,7 @@ export default function DoctorDetails({doctor,appointment}:{doctor:DoctorDetail;
                             onClick={()=>setIsActive("availability")} 
                             className={
                                 isActive==="availability"
-                                ?"border py-4 px-8 bg-sky-600 text-white w-full uppercase"
+                                ?"border py-4 px-8 bg-sky-700 text-white w-full uppercase"
                                 :"border py-4 px-8 border-gray-200 bg-slate-100 w-full uppercase dark:text-black"
                             }
                         >
@@ -152,8 +153,10 @@ export default function DoctorDetails({doctor,appointment}:{doctor:DoctorDetail;
                                     )}
                                     <div className="py-4">
                                     {/* <button onClick={()=>setStep(curr=>curr+1)} type="button" className="text-white bg-[#FF9119] hover:bg-[#FF9119]/80 focus:ring-4 focus:outline-none focus:ring-[#FF9119]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:hover:bg-[#FF9119]/80 dark:focus:ring-[#FF9119]/40 me-2 mb-2"> */}
-                                    <button onClick={initiateAppointment} type="button" className="text-white bg-black hover:bg-slate-900 dark:text-black dark:bg-white dark:hover:bg-slate-100 border focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 mb-2">
-                                        Book Appointment (${doctor.doctorProfile?.hourlyWage}) <MoveRight className="w-4 h-4 ml-3"/>
+
+                                    {/* <button onClick={initiateAppointment} type="button" className="text-white bg-black hover:bg-slate-900 dark:text-black dark:bg-white dark:hover:bg-slate-100 border focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 mb-2"> */}
+                                    <button onClick={initiateAppointment} type="button" className="text-white bg-sky-700 hover:bg-sky-800 border focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 mb-2">
+                                        Book Now (${doctor.doctorProfile?.hourlyWage}) <MoveRight className="w-4 h-4 ml-3"/>
                                     </button>
                                     </div>
         
@@ -182,51 +185,50 @@ export default function DoctorDetails({doctor,appointment}:{doctor:DoctorDetail;
                     <form className="py-4 px-4 mx-auto" onSubmit={handleSubmit(onSubmit)}>
                         <h2 className="scroll-m-20 border-b pb-2 mb-6 text-3xl font-semibold tracking-tight first:mt-0">Please provide the following details</h2>
                         
-                        {
-                            step===2?(
-                                <div className="space-y-6">
-                                    {/* <div className="grid gap-4 grid-cols-1 md:grid-cols-2"> */}
-                                    <div className="grid grid-cols-2 gap-6">
-                                        <TextInput label="First Name" register={register} name="firstName" errors={errors} className="col-span-1"/>
-                                        <TextInput label="Last Name" register={register} name="lastName" errors={errors} className="col-span-1"/>
-                                        {/* <div className="grid grid-cols-1 md:grid-cols-2"></div> */}
-                                        {/* <ImageInput label="Professional Profile Image" imageUrl={imageUrl} setImageUrl={setImageUrl} className="col-span-full" endpoint="serviceImage"/> */}
-                                    </div>
-                                    <div className="grid grid-cols-2 gap-6">
-                                        <TextInput label="Phone Number" register={register} name="phone" errors={errors} className="col-span-1"/>
-                                        <TextInput label="Email Address" register={register} name="email" errors={errors} className="col-span-1"/>
-                                    </div>
-                                    <div className="grid grid-cols-2 gap-6">
-                                        <DatePickerInput className="col-span-1" date={dob} setDate={setDOB} title="Date of Birth"/>
-                                        <RadioInput radioOptions={genderOptions} title="Gender" name="gender" register={register} errors={errors} className="col-span-1"/>
-                                    </div>
-                                    <div className="mt-8 flex justify-center gap-8 items-center">
-                                            {/* <div className="flex items-center space-x-8 py-4"> */}
-                                            <Button  type="button" onClick={()=>setStep(currStep=>currStep-1)}>Previous</Button>
-                                            <Button variant={"outline"} type="button" onClick={()=>setStep(currStep=>currStep+1)}>Next</Button>
-                                    </div> 
+                        {step===2?(
+                            <div className="space-y-6">
+                                <div className="grid grid-cols-2 gap-6">
+                                    <TextInput label="First Name" register={register} name="firstName" errors={errors} className="col-span-1"/>
+                                    <TextInput label="Last Name" register={register} name="lastName" errors={errors} className="col-span-1"/>
                                 </div>
-                            ):(
-                                <div className="space-y-6">
-                                    {/* <h2>step 3</h2> */}
-                                    <div className="grid grid-cols-2 gap-6">
-                                        <TextInput label="Location" register={register} name="location" errors={errors} className="col-span-1"/>
-                                        <TextInput label="Occupation" register={register} name="occupation" errors={errors} className="col-span-1"/>
-                                    </div>
-                                    <TextAreaInput label="Reason for Seeing the Doctor" register={register} name="appointmentReason" errors={errors}/>
-                                    {/*<MultipleFileUpload/>*/}
-                                    <div className="mt-8 flex justify-center gap-8 items-center">
-                                            {/* <div className="flex items-center space-x-8 py-4"> */}
-                                            <Button type="button" onClick={()=>setStep(currStep=>currStep-1)}>Previous</Button>
-                                            {loading?(
-                                                <Button disabled><Loader2 className="animate-spin" />Saving please wait...</Button>
-                                            ):(
-                                                <Button variant={"outline"} type="submit" onClick={()=>setStep(currStep=>currStep+1)}>Submit</Button>
-                                            )}                           
-                                    </div> 
+                                <div className="grid grid-cols-2 gap-6">
+                                    <TextInput label="Phone Number" register={register} name="phone" errors={errors} className="col-span-1"/>
+                                    <TextInput label="Email Address" register={register} name="email" errors={errors} className="col-span-1"/>
                                 </div>
-                            )
-                        }
+                                <div className="grid grid-cols-2 gap-6">
+                                    <DatePickerInput className="col-span-1" date={dob} setDate={setDOB} title="Date of Birth"/>
+                                    <RadioInput radioOptions={genderOptions} title="Gender" name="gender" register={register} errors={errors} className="col-span-1"/>
+                                </div>
+                                <div className="mt-8 flex justify-center gap-8 items-center">
+                                    {/* <div className="flex items-center space-x-8 py-4"> */}
+                                    <Button  type="button" onClick={()=>setStep(currStep=>currStep-1)}>Previous</Button>
+                                    <Button variant={"outline"} type="button" onClick={()=>setStep(currStep=>currStep+1)}>Next</Button>
+                                </div> 
+                            </div>
+                        ):(
+                            <div className="space-y-6">
+                                {/* <h2>step 3</h2> */}
+                                <div className="grid grid-cols-2 gap-6">
+                                    <TextInput label="Location" register={register} name="location" errors={errors} className="col-span-1"/>
+                                    <TextInput label="Occupation" register={register} name="occupation" errors={errors} className="col-span-1"/>
+                                </div>
+                                <TextAreaInput label="Reason for Seeing the Doctor" register={register} name="appointmentReason" errors={errors}/>
+                                {/* <MultipleFileUpload 
+                                    label="Medical documents" 
+                                    files={medicalDocs} 
+                                    setFiles={setMedicalDocs} 
+                                    endpoint="patientMedicalDocs"
+                                /> */}
+                                <div className="mt-8 flex justify-center gap-8 items-center">
+                                    <Button type="button" onClick={()=>setStep(currStep=>currStep-1)}>Previous</Button>
+                                    {loading?(
+                                        <Button disabled><Loader2 className="animate-spin" />Saving please wait...</Button>
+                                    ):(
+                                        <Button variant={"outline"} type="submit" onClick={()=>setStep(currStep=>currStep+1)}>Submit</Button>
+                                    )}                           
+                                </div> 
+                            </div>
+                        )}
                     </form>     
                 </div>
             )}

@@ -73,7 +73,7 @@ export default function ServiceForm({
 
     return (
         // <div className="w-full max-w-xl shadow-sm rounded-md m-3 border border-gray-200 mx-auto">
-        <div className={cn("w-full max-w-xl shadow-sm rounded-md m-3 border border-gray-200 mx-auto", className)}>
+        <div className={cn("w-full max-w-xl shadow-sm rounded-md m-3 border border-gray-300 dark:border-gray-200 mx-auto", className)}>
         <div className="text-center border-b border-gray-200 py-4">
           <div className="flex items-center justify-between px-6">
             <h1 className="scroll-m-20 text-2xl font-bold tracking-tight">{title}</h1>
@@ -85,7 +85,7 @@ export default function ServiceForm({
         <form className="py-4 px-4 mx-auto" onSubmit={handleSubmit(onSubmit)}>
           <div className="grid gap-4 grid-cols-2">
                 <TextInput label="Service Title" register={register} name="title" errors={errors} className="col-span-full"/>
-                <ImageInput label="Professional Profile Image" imageUrl={imageUrl} setImageUrl={setImageUrl} className="col-span-full" endpoint="serviceImage"/>
+                <ImageInput label="Service Image" imageUrl={imageUrl} setImageUrl={setImageUrl} className="col-span-full" endpoint="serviceImage"/>
           </div>
 
           {/* <div className="mt-8 flex justify-end gap-8 items-center"> */}

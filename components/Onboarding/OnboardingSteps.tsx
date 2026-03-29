@@ -48,19 +48,28 @@ export default function OnboardingSteps({
 
     return(
         <div className="grid grid-cols-12 mx-auto rounded-lg shadow-inner border border-slate-200 dark:border-gray-700">
-            <div className="col-span-full sm:col-span-3 bg-slate-100 min-h-screen divide-y-2 divide-gray-200 dark:bg-gray-900">
+            <div className="col-span-full sm:col-span-3 bg-slate-200 min-h-screen divide-y-2 divide-gray-200 dark:bg-gray-900">
                 
                 {
                     steps.map((step,i)=>{
                         return(
                             // <Link key={i} href={`/onboarding/${id}?page=${step.page}`} className={cn("block py-3 px-4 bg-slate-300 dark:bg-slate-400 shadow-inner uppercase text-sm", step.page===page? "bg-teal-400 text-sm dark:bg-teal-600":"")}>{step.title}</Link>
-                            <Link key={i} href={`${pathname}?page=${step.page}`} className={cn("block py-3 px-4 bg-slate-300 dark:bg-slate-400 shadow-inner uppercase text-black text-sm", step.page===page? "bg-sky-700 text-white text-sm dark:bg-sky-700":"")}>{step.title}</Link>
+                            <Link 
+                                key={i} 
+                                href={`${pathname}?page=${step.page}`} 
+                                className={cn(
+                                    "block py-3 px-4 bg-slate-300 dark:bg-slate-400 shadow-inner uppercase text-black text-sm", 
+                                    step.page===page ? "bg-sky-700 text-white text-sm dark:bg-sky-700":""
+                                )}
+                            >
+                                {step.title}
+                            </Link>
                         );
                     })
                 }
                 
             </div>
-            <div className="col-span-full sm:col-span-9 bg-slate-50 p-4 dark:bg-black">
+            <div className="col-span-full sm:col-span-9 bg-slate-50 p-4 dark:bg-slate-950">
                 {truckingNumber&&<p className="border-b border-gray-200 mb-4 text-teal-600 dark:text-teal-400">Use this Trucking Number to Resume your Application or Check the Status: <span className="font-bold">{truckingNumber}</span></p>}  
                 {currentStep?.component}
             </div>

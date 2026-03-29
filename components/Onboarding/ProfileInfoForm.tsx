@@ -21,95 +21,95 @@ export default function ProfileInfoForm({
   nextPage,
   doctorProfile
 }:StepFormProps) {
-    const [isLoading, setIsLoading]=useState(false);
-    const {savedDBData,setProfileData}=useOnboardingContext();
-    const initialExpiryDate = doctorProfile.medicalLicenseExpiry||savedDBData.medicalLicenseExpiry;
-    const initialProfileImage = doctorProfile.profilePicture||savedDBData.profilePicture;
-    // const [expiry, setExpiry] = useState<Date>(initialExpiryDate);
-    // After (type-safe solution)
-    const [expiry, setExpiry] = useState<Date | undefined>(initialExpiryDate);
-    const [profileImage,setProfileImage] = useState(initialProfileImage);
-    console.log(savedDBData);
+  const [isLoading, setIsLoading]=useState(false);
+  const {savedDBData,setProfileData}=useOnboardingContext();
+  const initialExpiryDate = doctorProfile.medicalLicenseExpiry||savedDBData.medicalLicenseExpiry;
+  const initialProfileImage = doctorProfile.profilePicture||savedDBData.profilePicture;
+  // const [expiry, setExpiry] = useState<Date>(initialExpiryDate);
+  // After (type-safe solution)
+  const [expiry, setExpiry] = useState<Date | undefined>(initialExpiryDate);
+  const [profileImage,setProfileImage] = useState(initialProfileImage);
+  console.log(savedDBData);
 
-    const {register,handleSubmit,formState:{errors}}=useForm<ProfileFormProps>({
-      defaultValues:{
-        profilePicture:doctorProfile.profilePicture||savedDBData.profilePicture,
-        bio:doctorProfile.bio||savedDBData.bio,
-        page:doctorProfile.page||savedDBData.page,
-        medicalLicense:doctorProfile.medicalLicense||savedDBData.medicalLicense,
-        medicalLicenseExpiry:doctorProfile.medicalLicenseExpiry||savedDBData.medicalLicenseExpiry,
-        yearsOfExperience:doctorProfile.yearsOfExperience||savedDBData.yearsOfExperience,
-      },
-    });
-    const router=useRouter();
-    const pathname = usePathname();
-    
-    async function onSubmit (data: ProfileFormProps){
-      setIsLoading(true);
-      if(!expiry){
-        toast.error("Please Select your License Expiry Date")
-        setIsLoading(false);
-        return;
-      }
-      data.medicalLicenseExpiry=expiry;
-      data.page=page;
-      data.yearsOfExperience=Number(data.yearsOfExperience);
-      data.profilePicture=profileImage;
-      console.log(data);
-
-      // profilePicture?: string;
-      // bio: string;
-      // page: string;
-      // medicalLicense:string;
-      // medicalLicenseExpiry?:Date;
-      // yearsOfExperience:number;
-
-      try{
-        const res = await updateDoctorProfile(doctorProfile.id,data);
-        setProfileData(data);
-        if(res?.status===201){
-          setIsLoading(false);
-          //extract the profile form from the updated profile
-          // router.push(`/onboarding/${userId}?page=${nextPage}`);
-          router.push(`${pathname}?page=${nextPage}`);
-          console.log(res.data);
-        }else{
-          setIsLoading(false);
-          throw new Error("Something went wrong");
-        }
-        
-      }catch(error){
-        console.error("Error updating doctor profile:", error);
-    	  toast.error("An unexpected error occurred.");
-        setIsLoading(false);
-      }
+  const {register,handleSubmit,formState:{errors}}=useForm<ProfileFormProps>({
+    defaultValues:{
+      profilePicture:doctorProfile.profilePicture||savedDBData.profilePicture,
+      bio:doctorProfile.bio||savedDBData.bio,
+      page:doctorProfile.page||savedDBData.page,
+      medicalLicense:doctorProfile.medicalLicense||savedDBData.medicalLicense,
+      medicalLicenseExpiry:doctorProfile.medicalLicenseExpiry||savedDBData.medicalLicenseExpiry,
+      yearsOfExperience:doctorProfile.yearsOfExperience||savedDBData.yearsOfExperience,
+    },
+  });
+  const router=useRouter();
+  const pathname = usePathname();
+  
+  async function onSubmit (data: ProfileFormProps){
+    setIsLoading(true);
+    if(!expiry){
+      toast.error("Please Select your License Expiry Date")
+      setIsLoading(false);
+      return;
     }
+    data.medicalLicenseExpiry=expiry;
+    data.page=page;
+    data.yearsOfExperience=Number(data.yearsOfExperience);
+    data.profilePicture=profileImage;
+    console.log(data);
 
-    return (
-        <div className="w-full">
-        <div className="text-center border-b border-gray-200 pb-4">
-          <h1 className="scroll-m-20 text-3xl font-extrabold tracking-tight lg:text-4xl">{title}</h1>
-          <p className="text-balance text-muted-foreground">
-            {description}
-          </p>
-        </div>
-        <form className="py-4 px-4 mx-auto" onSubmit={handleSubmit(onSubmit)}>
-          <div className="grid gap-4 grid-cols-2">
-                <TextInput label="Medical License" register={register} name="medicalLicense" errors={errors} className="col-span-full sm:col-span-1"/>
-                <TextInput label="Years of Experience" register={register} name="yearsOfExperience" errors={errors} className="col-span-full sm:col-span-1"/>
-                <DatePickerInput date={expiry} setDate={setExpiry} title="Medical License Expiry" className="col-span-full sm:col-span-1"/>
-                {/* <TextInput label="Hourly Charge" register={register} name="hourlyWage" type="number" errors={errors} className="col-span-full sm:col-span-1"/> */}
-                <TextAreaInput label="Biography" register={register} name="bio" errors={errors}/>
-                <ImageInput label="Professional Profile Image" imageUrl={profileImage} setImageUrl={setProfileImage} className="col-span-full" endpoint="doctorProfileImage"/>
-          </div>
+    // profilePicture?: string;
+    // bio: string;
+    // page: string;
+    // medicalLicense:string;
+    // medicalLicenseExpiry?:Date;
+    // yearsOfExperience:number;
 
-          <div className="mt-8 flex justify-center items-center"> 
-                <SubmitButton title="Save and continue" isLoading={isLoading} loadingTitle="Saving please wait..."/>
-          </div>
-          
-        </form>
-
-      </div>
-    );
+    try{
+      const res = await updateDoctorProfile(doctorProfile.id,data);
+      setProfileData(data);
+      if(res?.status===201){
+        setIsLoading(false);
+        //extract the profile form from the updated profile
+        // router.push(`/onboarding/${userId}?page=${nextPage}`);
+        router.push(`${pathname}?page=${nextPage}`);
+        console.log(res.data);
+      }else{
+        setIsLoading(false);
+        throw new Error("Something went wrong");
+      }
+      
+    }catch(error){
+      console.error("Error updating doctor profile:", error);
+      toast.error("An unexpected error occurred.");
+      setIsLoading(false);
+    }
   }
+
+  return (
+      <div className="w-full">
+      <div className="text-center border-b border-gray-200 pb-4">
+        <h1 className="scroll-m-20 text-3xl font-extrabold tracking-tight lg:text-4xl">{title}</h1>
+        <p className="text-balance text-muted-foreground">
+          {description}
+        </p>
+      </div>
+      <form className="py-4 px-4 mx-auto" onSubmit={handleSubmit(onSubmit)}>
+        <div className="grid gap-4 grid-cols-2">
+              <TextInput label="Medical License" register={register} name="medicalLicense" errors={errors} className="col-span-full sm:col-span-1"/>
+              <TextInput label="Years of Experience" register={register} name="yearsOfExperience" errors={errors} className="col-span-full sm:col-span-1"/>
+              <DatePickerInput date={expiry} setDate={setExpiry} title="Medical License Expiry" className="col-span-full sm:col-span-1"/>
+              {/* <TextInput label="Hourly Charge" register={register} name="hourlyWage" type="number" errors={errors} className="col-span-full sm:col-span-1"/> */}
+              <TextAreaInput label="Biography" register={register} name="bio" errors={errors}/>
+              <ImageInput label="Professional Profile Image" imageUrl={profileImage} setImageUrl={setProfileImage} className="col-span-full" endpoint="doctorProfileImage"/>
+        </div>
+
+        <div className="mt-8 flex justify-center items-center"> 
+              <SubmitButton title="Save and continue" isLoading={isLoading} loadingTitle="Saving please wait..."/>
+        </div>
+        
+      </form>
+
+    </div>
+  );
+}
   

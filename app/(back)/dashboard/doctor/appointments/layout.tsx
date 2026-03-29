@@ -27,13 +27,13 @@ export default async function AppointmentLayout({children}:{children:ReactNode})
             <div className="grid grid-cols-12">
                
                 {/*List Panel*/}
-                <div className="col-span-3 py-3 border-r">
+                <div className="col-span-4 py-3 border-r">
                     <PanelHeader title="Appointments" count={appointments.length??0} icon={Calendar}/>
                     <div className="px-6"><ListPanel appointments={appointments} role={user?.role}/></div>          
                 </div>
 
                 {/*Display Panel*/}
-                <div className="col-span-9">
+                <div className="col-span-8">
                 {/* <div className="py-2 border-b border-gray-200 flex items-center justify-end px-4">
                     <div className="flex items-center gap-4">
                         <NewButton title="New Appointment" href="#"/>
