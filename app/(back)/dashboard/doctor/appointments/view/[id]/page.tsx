@@ -1,7 +1,7 @@
 import React from "react";
 import { Calendar } from "lucide-react";
 import { getAppointmentById } from "@/actions/appointments";
-import UpdateAppointmentForm from "@/components/Dashboard/Doctor/AvailabilityDays/UpdateAppointmentForm";
+import UpdateAppointmentForm from "@/components/Dashboard/Doctor/UpdateAppointmentForm";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 

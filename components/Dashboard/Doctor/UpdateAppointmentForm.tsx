@@ -1,11 +1,11 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import React, { useState } from "react";
-import TextInput from "../../../FormInputs/TextInput";
+import TextInput from "../../FormInputs/TextInput";
 import { useForm } from "react-hook-form";
-import SelectInput from "../../../FormInputs/SelectInput";
+import SelectInput from "../../FormInputs/SelectInput";
 import { Appointment, AppointmentStatus } from "@prisma/client";
-import { updateAppointmentById } from "../../../../actions/appointments";
+import { updateAppointmentById } from "../../../actions/appointments";
 import toast from "react-hot-toast";
 
 export type AppointmentUpdateProps = {
@@ -72,7 +72,8 @@ export default function UpdateAppointmentForm({appointment}:{appointment:Appoint
     }
 
     return(
-        <form className="border border-slate-400 shadow rounded-md p-4 mx-4 my-4" onSubmit={handleSubmit(handleUpdate)}>
+        <form className="border border-teal-700 shadow rounded-md p-4 mx-4 my-4" onSubmit={handleSubmit(handleUpdate)}>
+            {/* border-slate-400 */}
             <div className="sm:col-span-4">
             <div className="flex items-center justify-between border-b">
             <h2 className="scroll-m-20 text-xl font-semibold tracking-tight py-2 mb-2">Please Select</h2>

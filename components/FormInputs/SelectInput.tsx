@@ -33,7 +33,7 @@ export default function SelectInput<T extends FieldValues = FieldValues>({
           {...(register ? register(name as Path<T>) : {})}
           id={name}
           multiple={multiple}
-          className="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm"
+          className="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-700 sm:max-w-xs sm:text-sm"
         >
           {options.map((option, i) => (
             <option key={i} value={option.value}>

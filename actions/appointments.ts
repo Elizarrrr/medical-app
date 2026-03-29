@@ -6,7 +6,7 @@ import { AppointmentProps } from "@/types/types";
 import { Resend } from "resend";
 import NewAppointmentEmail from "@/components/Emails/new-appointment";
 import { Appointment } from "@prisma/client";
-import { AppointmentUpdateProps } from "@/components/Dashboard/Doctor/AvailabilityDays/UpdateAppointmentForm";
+import { AppointmentUpdateProps } from "@/components/Dashboard/Doctor/UpdateAppointmentForm";
 
 const resend = new Resend(process.env.RESEND_API_KEY); //pass in your API key
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
