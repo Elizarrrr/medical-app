@@ -43,9 +43,9 @@ export default function UpdateServiceForm({
     const [price,setPrice] = useState(initialPrice);
     
     const [savingServices,setSavingServices] = useState(false);
-    const [savingPrice,setSavingPrice] = useState(false);
     const [savingSpecialty,setSavingSpecialty] = useState(false);
     const [savingMode,setSavingMode] = useState(false);
+    const [savingPrice,setSavingPrice] = useState(false);
 
     console.log(price);
 
@@ -141,7 +141,7 @@ export default function UpdateServiceForm({
                 <div className="border shadow rounded-md p-4 mt-4">
                     <div className="sm:col-span-4">
                         <div className="flex items-center justify-between border-b">
-                            <h2 className="scroll-m-20 text-xl font-semibold tracking-tight py-2 mb-2">Update Price per Hour </h2>
+                            <h2 className="scroll-m-20 text-xl font-semibold tracking-tight py-2 mb-2">Select Price per Hour </h2>
                             <Button disabled={savingPrice} onClick={handleUpdatePrice} className="">
                             {savingPrice?"Saving please wait...":"Update Price"}
                             </Button>
@@ -182,7 +182,7 @@ export default function UpdateServiceForm({
 
                 <div className="border shadow rounded-md p-4 mt-4">
                     <div className="flex items-center justify-between border-b">
-                        <h2 className="scroll-m-20 text-xl font-semibold tracking-tight py-2 mb-2">Select the Service you want to Offer</h2>
+                        <h2 className="scroll-m-20 text-xl font-semibold tracking-tight py-2 mb-2">Select your Service</h2>
                         <Button disabled={savingServices} onClick={handleUpdateService} className="">
                         {savingServices?"Saving please wait...":"Update Service"}
                         </Button>

@@ -204,3 +204,127 @@ export async function getDoctors(){
         return null
     }
 }
+
+export async function getDoctorBySlug(slug:string){
+
+        if(slug){
+            try {
+                const doctor = await prismaClient.user.findFirst({
+                    where:{
+                        role:"DOCTOR",
+                        slug,
+                    },
+                    select:{
+                        id:true,
+                        name:true,
+                        email:true,
+                        slug:true,
+                        phone:true,
+                        doctorProfile:{
+                            select:{
+                                firstName:true,
+                                lastName:true,
+                                gender:true,
+                                bio:true,
+                                profilePicture:true,
+                                operationMode:true,
+                                hourlyWage:true,
+                                yearsOfExperience:true,
+                                country:true,
+                                city:true,
+                                //specialty:true,  //added myself
+                                availability:{
+                                    select:{
+                                        monday:true,
+                                        tuesday:true,
+                                        wednesday:true,
+                                        thursday:true,
+                                        friday:true,
+                                        saturday:true,
+                                        sunday:true,
+                                    },
+                                },
+                            },
+                        },
+                    },
+                });
+
+                if(!doctor){
+                    return null;
+                }
+        
+                return doctor as DoctorDetail;
+        
+            }
+                catch (error) {
+                console.log(error);
+                return null;
+            }
+        }
+    
+    
+}
+
+export async function getDoctorById(id:string){
+
+    if(id){
+        try {
+            const doctor = await prismaClient.user.findFirst({
+                where:{
+                    role:"DOCTOR",
+                    id,
+                },
+                select:{
+                    id:true,
+                    name:true,
+                    email:true,
+                    slug:true,
+                    phone:true,
+                    doctorProfile:{
+                        select:{
+                            firstName:true,
+                            lastName:true,
+                            gender:true,
+                            bio:true,
+                            profilePicture:true,
+                            operationMode:true,
+                            hourlyWage:true,
+                            yearsOfExperience:true,
+                            country:true,
+                            city:true,
+                            phone: true,   // add this
+                            email: true,   // add this
+                            medicalLicense: true, // add this
+                            medicalLicenseExpiry: true, // and this
+                            //specialty:true,  //added myself
+                            availability:{
+                                select:{
+                                    monday:true,
+                                    tuesday:true,
+                                    wednesday:true,
+                                    thursday:true,
+                                    friday:true,
+                                    saturday:true,
+                                    sunday:true,
+                                },
+                            },
+                        },
+                    },
+                },
+            });
+
+            if(!doctor){
+                return null;
+            }
+    
+            return doctor as DoctorDetail;
+    
+        }
+            catch (error) {
+            console.log(error);
+            return null;
+        }
+    }
+
+
+}

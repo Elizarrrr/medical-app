@@ -20,6 +20,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+// const outfit = Outfit({
+//   subsets: ["latin"],
+// });
+
 export const metadata: Metadata = {
   title: {
     default: siteConfig.name,
@@ -80,20 +84,21 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      {/* <body className={outfit.className}> */}
         <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
         <Providers>
           <ThemeProvider
-              attribute="class"
-              defaultTheme="system"
-              enableSystem
-              disableTransitionOnChange
-            >
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
 
-              <OnboardingContextProvider>
-                {children}
-              </OnboardingContextProvider>
+            <OnboardingContextProvider>
+              {children}
+            </OnboardingContextProvider>
 
-            </ThemeProvider>
+          </ThemeProvider>
         </Providers>
       </body>
     </html>

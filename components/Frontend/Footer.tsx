@@ -13,9 +13,13 @@ export default function Footer() {
                     name: 'List your Service'
                 },
                 {
-                    href: 'javascript:void()',
-                    name: 'Blog'
+                    href: "/onboarding/resume",
+                    name: 'Resume your application'
                 },
+                // {
+                //     href: 'javascript:void()',
+                //     name: 'Blog'
+                // },
                 {
                     href: 'javascript:void()',
                     name: 'Team'
