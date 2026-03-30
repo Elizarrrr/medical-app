@@ -76,7 +76,7 @@ export default function UpdateAppointmentForm({appointment}:{appointment:Appoint
             {/* border-slate-400 */}
             <div className="sm:col-span-4">
             <div className="flex items-center justify-between border-b">
-            <h2 className="scroll-m-20 text-xl font-semibold tracking-tight py-2 mb-2">Please Select</h2>
+            <h2 className="scroll-m-20 text-xl font-semibold tracking-tight py-2 mb-2">Appointment Details</h2>
                 <Button disabled={loading} className="dark:bg-white dark:text-black dark:hover:bg-slate-100">
                 {loading?"Saving please wait...":"Update Appointment"}
                 </Button>

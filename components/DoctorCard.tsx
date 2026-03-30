@@ -80,7 +80,7 @@ export default function DoctorCard({
                                     {/* <span>${doctor.doctorProfile?.specialty}</span> */}
                                     <span>Family Medicine</span>
                                 </p>
-                                <p className="bg-sky-200 dark:text-slate-900 py-3 px-4 uppercase">
+                                <p className="bg-slate-200 text-slate-900 py-3 px-4 uppercase">
                                     Available Today
                                 </p> 
                             </div>

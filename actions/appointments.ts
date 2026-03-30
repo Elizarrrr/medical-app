@@ -35,7 +35,7 @@ export async function createAppointment(data:AppointmentProps){
         // TRY to send email (but don't fail if email fails)
         try {
             const sendMail = await resend.emails.send({
-                from: "Medical App <info@jazzafricaadventures.com>",
+                from: "Oasis Hospital <info@jazzafricaadventures.com>",
                 to: doctorMail??"",
                 subject: "New Appointment Approval Needed",
                 react: NewAppointmentEmail({ firstName, link, message }),
@@ -276,7 +276,7 @@ export async function updateAppointmentById(id:string, patientId:string, data:Ap
       // TRY to send email (but don't fail if email fails)
       try {
         const sendMail = await resend.emails.send({
-          from: "Medical App <info@jazzafricaadventures.com>",
+          from: "Oasis Hospital <info@jazzafricaadventures.com>",
           to: doctorMail??"",
           subject: "Appointment Approved",
           react: NewAppointmentEmail({ firstName, link, message }),

@@ -99,7 +99,7 @@ export default function DoctorDetails({doctor,appointment}:{doctor:DoctorDetail;
                             className={
                                 isActive==="details"
                                 ?"border py-4 px-8 bg-sky-700 text-white w-full uppercase"
-                                :"border py-4 px-8 border-gray-200 bg-slate-100 w-full uppercase dark:text-black"
+                                :"border py-4 px-8 border-gray-200 bg-slate-200 w-full uppercase dark:text-black"
                             }
                         >
                             Service Details
@@ -110,7 +110,7 @@ export default function DoctorDetails({doctor,appointment}:{doctor:DoctorDetail;
                             className={
                                 isActive==="availability"
                                 ?"border py-4 px-8 bg-sky-700 text-white w-full uppercase"
-                                :"border py-4 px-8 border-gray-200 bg-slate-100 w-full uppercase dark:text-black"
+                                :"border py-4 px-8 border-gray-200 bg-slate-200 w-full uppercase dark:text-black"
                             }
                         >
                             Availability

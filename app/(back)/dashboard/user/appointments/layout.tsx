@@ -1,22 +1,22 @@
 import React, { ReactNode } from "react";
-import { AlarmClock, Calendar } from "lucide-react";
-import { getServerSession } from "next-auth";
-import { getDoctorAppointments } from "@/actions/appointments";
-import { authOptions } from "@/lib/auth";
 import PanelHeader from "@/components/Dashboard/Doctor/PanelHeader";
 import ListPanel from "@/components/Dashboard/Doctor/ListPanel";
+import { Calendar } from "lucide-react";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
+import { getPatientAppointments } from "@/actions/appointments";
 import NotAuthorized from "@/components/NotAuthorized";
 
 export default async function AppointmentLayout({children}:{children:ReactNode}) {
-
+    
     const session = await getServerSession(authOptions);
     const user = session?.user
-    if(user?.role !=="DOCTOR"){
+    if(user?.role !=="USER"){
         return(
             <NotAuthorized/>
         );
     }
-    const appointments = (await getDoctorAppointments(user?.id)).data||[];
+    const appointments = (await getPatientAppointments(user?.id)).data||[];
 
     return(
         <div>
@@ -28,8 +28,8 @@ export default async function AppointmentLayout({children}:{children:ReactNode})
                
                 {/*List Panel*/}
                 <div className="col-span-4 py-3 border-r">
-                    <PanelHeader title="Appointments" count={appointments.length??0} icon={AlarmClock}/>
-                    <div className="px-6"><ListPanel appointments={appointments} role={user?.role}/></div>          
+                    <PanelHeader title="Appointments" count={appointments.length??0} icon={Calendar}/>
+                    <div className="px-6"><ListPanel role={user.role} appointments={appointments}/></div>          
                 </div>
 
                 {/*Display Panel*/}

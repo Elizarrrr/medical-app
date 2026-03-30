@@ -1,7 +1,7 @@
 import React from "react";
 import { getSpecialties } from "@/actions/specialties";
-import OnboardingSteps from "@/components/Onboarding/OnboardingSteps";
 import { getDoctorProfileById } from "@/actions/onboarding";
+import OnboardingSteps from "@/components/Onboarding/OnboardingSteps";
 
 export default async function page({
     params // Changed: Don't destructure params directly

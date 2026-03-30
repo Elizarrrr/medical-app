@@ -1,5 +1,5 @@
 import React from "react";
-import { CalendarCheck, History } from "lucide-react";
+import { CalendarCheck, Check, CircleEllipsis, History, X } from "lucide-react";
 import { getPatientAppointments } from "@/actions/appointments";
 import Link from "next/link";
 import { getTimeAgo } from "@/utils/timeAgo";
@@ -22,18 +22,6 @@ export default async function page({params:{id}}:{params:{id:string}}) {
                         >
                             <div className="flex justify-between item-center pb-2">
                                 <h2>{item.firstName} {item.lastName}</h2>
-                                <span className="font-medium">{item.appointmentTime}</span>
-                                {/* <div className="flex items-center">
-                                    <History className="h-4 w-4 mr-2"/>
-                                    <span>{getTimeAgo(item.createdAt)}</span>
-                                </div> */}
-                            </div>
-
-                            <div className="flex items-center gap-4 border-b">
-                                <div className="flex items-center">
-                                    <CalendarCheck className="w-4 h-4 mr-2"/>
-                                    <span className="font-medium">{item.appointmentFormattedDate}</span>
-                                </div>
                                 {/* <span className="font-medium">{item.appointmentTime}</span> */}
                                 <div className="flex items-center">
                                     <History className="h-4 w-4 mr-2"/>
@@ -41,13 +29,25 @@ export default async function page({params:{id}}:{params:{id:string}}) {
                                 </div>
                             </div>
 
-                            {/* <div className={cn("flex items-center pt-2 text-blue", item.status==="approved" && "text-green-600 font-medium")}> 
+                            <div className="flex items-center gap-4 border-b">
+                                <div className="flex items-center">
+                                    <CalendarCheck className="w-4 h-4 mr-2"/>
+                                    <span className="font-medium">{item.appointmentFormattedDate}</span>
+                                </div>
+                                <span className="font-medium">{item.appointmentTime}</span>
+                                {/* <div className="flex items-center">
+                                    <History className="h-4 w-4 mr-2"/>
+                                    <span>{getTimeAgo(item.createdAt)}</span>
+                                </div> */}
+                            </div>
+
+                            <div className={cn("flex items-center pt-2 text-blue", item.status==="approved" && "text-teal-600 dark:text-teal-400 font-medium")}> 
                                 {item.status==="pending"?(<CircleEllipsis className="w-4 h-4 mr-2"/>):item.status==="approved"?(<Check className="w-4 h-4 mr-2"/>):(<X className="w-4 h-4 mr-2"/>)}
                                 <span>{item.status}</span>
-                            </div> */}
-                            <div className="flex items-center pt-2">
-                                <span className="text-teal-600 font-medium dark:text-teal-400">{item.status}</span>
                             </div>
+                            {/* <div className="flex items-center pt-2">
+                                <span className="text-teal-600 font-medium dark:text-teal-400">{item.status}</span>
+                            </div> */}
                         </Link>
                     );
                 })}

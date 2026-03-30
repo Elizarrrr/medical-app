@@ -2,7 +2,7 @@
 import React from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import Link from "next/link";
-import { Mail, MapPin } from "lucide-react";
+import { Mail, MapPin, UserRound } from "lucide-react";
 import { UserRole } from "@prisma/client";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
@@ -42,8 +42,9 @@ export default function PatientPanel({patients,role}:{patients:PatientProps[];ro
                   </div> */}
               </div>
 
-              <div className="flex items-center pt-2">
-                <span className="text-teal-600 font-medium dark:text-teal-400">{item.gender}</span>
+              <div className="flex items-center pt-2 text-teal-600 font-medium dark:text-teal-400">
+                <UserRound className="w-4 h-4 mr-2"/>
+                <span>{item.gender}</span>
               </div>
             </Link>
           ))}   
