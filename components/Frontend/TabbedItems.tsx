@@ -74,7 +74,7 @@ export default function TabbedItems({services,specialties}:TabbedItemsProps) {
 
     const tabs = [
         {
-        title: "Top Booked",
+        title: "Popular Services",
         icon: Stethoscope as FC<SVGProps<SVGSVGElement>>,
         component: <ServiceList data={services} />,
         content: [],
