@@ -11,7 +11,7 @@ import Link from "next/link";
 export default function AnalyticsCard({data}:{data:DoctorAnalyticsProps}) {
     const Icon = data.icon;
     return(
-        <Card>
+        <Card className="border-gray-300 dark:border-gray-700">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">{data.title}</CardTitle>
                 <Icon className="h-4 w-4 text-muted-foreground"/>
@@ -21,6 +21,7 @@ export default function AnalyticsCard({data}:{data:DoctorAnalyticsProps}) {
                 <Link href={data.detailLink} className="text-xs text-muted-foreground">View Details</Link>
             </CardContent>
         </Card>
+        
         // <Card className="@container/card">
         //     <CardHeader className="relative">
         //     <CardDescription>Total Revenue</CardDescription>

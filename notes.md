@@ -930,3 +930,94 @@
         </Link>
     )
     }
+
+20. FormSelectInput
+    "use client";
+    import React from "react";
+    import Select from "react-tailwindcss-select";
+    // import { Option, Options } from "react-tailwindcss-select/dist/components/type";
+
+    export type Option = {
+    label: string;
+    value: string;
+    };
+
+    export type Options = Option[];
+
+    // Define the props with specific types for the state setter function
+    type FormSelectInputProps = {
+    options: Options;
+    label: string;
+    option: Option | null;
+    // setOption: any;
+    setOption: React.Dispatch<React.SetStateAction<Option | null>>;
+    href?: string;
+    labelShown?: boolean;
+    toolTipText?: string;
+    };
+
+    export default function FormSelectInput({
+    options,
+    label,
+    option,
+    setOption,
+    labelShown = true,
+    }: FormSelectInputProps) {
+    return (
+    <div className="">
+        {labelShown && (
+        <h2 className="pb-2 block text-sm font-medium leading-6 text-gray-900 dark:text-white">
+            Select {label}
+        </h2>
+        )}
+        <div className="flex items-center space-x-2">
+        <Select
+            isSearchable
+            primaryColor="blue"
+            value={option}
+            // onChange={(item) => setOption(item)}
+
+            // onChange={(item) => {
+            //   // Check if item is an array or a single Option
+            //   if (Array.isArray(item)) {
+            //     // Handle the case where multiple options are selected
+            //     setOption(item[0]); // Or handle differently if you want to store an array
+            //   } else if (item) {
+            //     // Handle the single option case
+            //     setOption(item);
+            //   } else {
+            //     // If item is null or undefined, set to a default empty Option
+            //     setOption({} as Option);
+            //   }
+            // }}
+            
+            onChange={(item) => {
+            if (Array.isArray(item)) {
+                setOption(item[0]);
+            } else {
+                setOption(item || null);
+            }
+            }}
+            
+            options={options}
+            placeholder={label}
+            />
+        </div>
+    </div>
+    );
+    }
+
+21. MessageBody.tsx
+    "use client";
+    import parse from 'html-react-parser';
+    import React from "react";
+
+    export default function MessageBody({html}:{html:string}) {
+        return(
+            <div className="parsed-html">
+                {parse(`${html}`)}
+            </div>
+        );
+    }
+
+    {/* <div className="prose"> {parse(`${html}`)} </div> */}

@@ -25,7 +25,7 @@ export default function SearchBar() {
                  <input 
                     type="search" 
                     id="default-search" 
-                    className="block w-full py-3 px-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-full bg-gray-50 focus:ring-gray-900 focus:border-white" 
+                    className="block w-full py-3 px-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-full bg-gray-50 focus:ring-gray-900 focus:border-white dark:bg-slate-950 dark:text-slate-50" 
                     placeholder="Search..." 
                     onChange = {e=>setQuery(e.target.value)}
                     value={query}

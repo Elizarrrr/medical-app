@@ -11,7 +11,7 @@ type HomeDisplayCardProps = {
 export default function HomeDisplayCard({count,newAppointmentLink,title}:HomeDisplayCardProps) {
     return(
         <div className="flex h-72 items-center justify-center">
-            <div className="py-4 px-6 text-center border border-gray-100 shadow-md rounded-md flex flex-col items-center gap-1 text-sm">
+            <div className="py-4 px-6 text-center border border-gray-300 dark:border-gray-700 shadow-md rounded-md flex flex-col items-center gap-1 text-sm">
                 <Calendar/>
                 <div className="py-3">
                     {""}

@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import PanelHeader from "@/components/Dashboard/Doctor/PanelHeader";
 import ListPanel from "@/components/Dashboard/Doctor/ListPanel";
-import { Calendar } from "lucide-react";
+import { AlarmClock } from "lucide-react";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { getPatientAppointments } from "@/actions/appointments";
@@ -28,8 +28,10 @@ export default async function AppointmentLayout({children}:{children:ReactNode})
                
                 {/*List Panel*/}
                 <div className="col-span-4 py-3 border-r">
-                    <PanelHeader title="Appointments" count={appointments.length??0} icon={Calendar}/>
-                    <div className="px-6"><ListPanel role={user.role} appointments={appointments}/></div>          
+                    <PanelHeader title="Appointments" count={appointments.length??0} icon={AlarmClock}/>
+                    <div className="px-6">
+                        <ListPanel role={user.role} appointments={appointments}/>
+                    </div>          
                 </div>
 
                 {/*Display Panel*/}

@@ -28,9 +28,9 @@ export default function Sidebar({session}:{session:Session}) {
   const roles = {
     USER:[
       {title: "Dashboard", path: "/dashboard",icon: Home},
-      {title: "My Appointments", path: "/dashboard/user/appointments",icon: AlarmClock},
+      {title: "Appointments", path: "/dashboard/user/appointments",icon: AlarmClock},
       {title: "Doctors", path: "/dashboard/user/doctors", icon: Users},
-      {title: "Mail", path: "/dashboard/user/inbox", icon: Mail},
+      {title: "Inbox", path: "/dashboard/user/inbox", icon: Mail},
       // {title: "Settings", path: "/dashboard/user/settings",icon: Settings},
     ],
     ADMIN:[
@@ -47,7 +47,7 @@ export default function Sidebar({session}:{session:Session}) {
       {title: "Dashboard", path: "/dashboard", icon: Home},
       {title: "Appointments", path: "/dashboard/doctor/appointments", icon:AlarmClock},
       {title: "Patients", path: "/dashboard/doctor/patients", icon: Users},
-      {title: "Mail", path: "/dashboard/doctor/inbox", icon: Mail},
+      {title: "Inbox", path: "/dashboard/doctor/inbox", icon: Mail},
       {title: "Profile", path: `/dashboard/doctor/profile/${id}`, icon: User2},
       {title: "Settings", path: "/dashboard/doctor/settings", icon: Settings},
       // {title: "Tasks", path: "/dashboard/doctor/tasks", icon: CalendarFold},

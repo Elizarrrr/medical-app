@@ -136,11 +136,11 @@ export default function UpdateServiceForm({
 
     return(
         <>
-            <CardContent className="space-y-3">
+            <CardContent className="border border-gray-300 dark:border-gray-700 rounded-md space-y-3">
 
-                <div className="border shadow rounded-md p-4 mt-4">
+                <div className="border border-gray-300 dark:border-gray-700 shadow rounded-md p-4 mt-4">
                     <div className="sm:col-span-4">
-                        <div className="flex items-center justify-between border-b">
+                        <div className="flex items-center justify-between border-b border-gray-300 dark:border-gray-700">
                             <h2 className="scroll-m-20 text-xl font-semibold tracking-tight py-2 mb-2">Select Price per Hour </h2>
                             <Button disabled={savingPrice} onClick={handleUpdatePrice} className="">
                             {savingPrice?"Saving please wait...":"Update Price"}
@@ -157,8 +157,8 @@ export default function UpdateServiceForm({
                     </div>
                 </div>
 
-                <div className="border shadow rounded-md p-4 mt-4">
-                    <div className="flex items-center justify-between border-b">
+                <div className="border border-gray-300 dark:border-gray-700 shadow rounded-md p-4 mt-4">
+                    <div className="flex items-center justify-between border-b border-gray-300 dark:border-gray-700">
                         <h2 className="scroll-m-20 text-xl font-semibold tracking-tight py-2 mb-2">Select your Operation Mode</h2>
                         <Button disabled={savingMode} onClick={handleUpdateMode} className="">
                         {savingMode?"Saving please wait...":"Update Mode"}
@@ -169,7 +169,14 @@ export default function UpdateServiceForm({
                             operationModes && operationModes.map((item,i)=>{
                                 const Icon = item.icon
                                 return(
-                                    <button key={i} onClick={()=>setOperationMode(item.title)} className={cn("border flex items-center justify-center flex-col py-2 px-3 rounded-md cursor-pointer", operationMode===item.title?"border-2 border-teal-600 bg-slate-50 dark:bg-slate-900":"")}>
+                                    <button 
+                                        key={i} 
+                                        onClick={()=>setOperationMode(item.title)} 
+                                        className={cn(
+                                            "border border-gray-300 dark:border-gray-700 flex items-center justify-center flex-col py-2 px-3 rounded-md cursor-pointer", 
+                                            operationMode===item.title?"border-2 border-teal-600 dark:border-teal-600 bg-slate-50 dark:bg-slate-900":""
+                                        )}
+                                    >
                                         {/* <Image src={item.imageUrl} alt={item.title} width={100} height={100} className="w-14 h-14"/> */}
                                         <Icon className="w-8 h-8"/>
                                         <p className="text-xs">{item.title}</p>
@@ -180,8 +187,8 @@ export default function UpdateServiceForm({
                     </div>
                 </div>
 
-                <div className="border shadow rounded-md p-4 mt-4">
-                    <div className="flex items-center justify-between border-b">
+                <div className="border border-gray-300 dark:border-gray-700 shadow rounded-md p-4 mt-4">
+                    <div className="flex items-center justify-between border-b border-gray-300 dark:border-gray-700">
                         <h2 className="scroll-m-20 text-xl font-semibold tracking-tight py-2 mb-2">Select your Service</h2>
                         <Button disabled={savingServices} onClick={handleUpdateService} className="">
                         {savingServices?"Saving please wait...":"Update Service"}
@@ -191,7 +198,14 @@ export default function UpdateServiceForm({
                         {
                             services && services.map((item,i)=>{
                                 return(
-                                    <button key={i} onClick={()=>setSelectedServiceId(item.id)} className={cn("border flex items-center justify-center flex-col py-2 px-3 rounded-md cursor-pointer", selectedServiceId===item.id?"border-2 border-teal-600 bg-slate-50 dark:bg-slate-900":"")}>
+                                    <button 
+                                        key={i} 
+                                        onClick={()=>setSelectedServiceId(item.id)} 
+                                        className={cn(
+                                            "border border-gray-300 dark:border-gray-700 flex items-center justify-center flex-col py-2 px-3 rounded-md cursor-pointer", 
+                                            selectedServiceId===item.id?"border-2 border-teal-600 dark:border-teal-600 bg-slate-50 dark:bg-slate-900":""
+                                        )}
+                                    >
                                         <Image src={item.imageUrl} alt={item.title} width={100} height={100} className="w-14 h-14"/>
                                         <p className="text-xs">{item.title}</p>
                                     </button>
@@ -201,8 +215,8 @@ export default function UpdateServiceForm({
                     </div>
                 </div>
 
-                <div className="border shadow rounded-md p-4">
-                    <div className="flex items-center justify-between border-b">
+                <div className="border border-gray-300 dark:border-gray-700 shadow rounded-md p-4">
+                    <div className="flex items-center justify-between border-b border-gray-300 dark:border-gray-700">
                         <h2 className="scroll-m-20 text-xl font-semibold tracking-tight py-2 mb-2">Select your Specialty</h2>
                         <Button disabled={savingSpecialty} onClick={handleUpdateSpecialty} className="">
                         {savingSpecialty?"Saving please wait...":"Update Specialty"}
@@ -213,7 +227,14 @@ export default function UpdateServiceForm({
                             specialties && specialties.map((item,i)=>{
                                 return(
                                     // <div className="border flex items-center justify-center flex-col py-2 px-3 rounded-md cursor-pointer">
-                                    <button key={i} onClick={()=>setSpecialtyId(item.id)} className={cn("border flex items-center justify-center flex-col py-2 px-3 rounded-md cursor-pointer", specialtyId===item.id?"border-2 border-teal-600 bg-slate-50 dark:bg-slate-900":"")}>
+                                    <button 
+                                        key={i} 
+                                        onClick={()=>setSpecialtyId(item.id)} 
+                                        className={cn(
+                                            "border border-gray-300 dark:border-gray-700 flex items-center justify-center flex-col py-2 px-3 rounded-md cursor-pointer", 
+                                            specialtyId===item.id?"border-2 border-teal-600 dark:border-teal-600 bg-slate-50 dark:bg-slate-900":""
+                                        )}
+                                    >
                                         <p className="text-xs">{item.title}</p>
                                     </button>
                                 );

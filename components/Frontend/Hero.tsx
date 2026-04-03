@@ -33,7 +33,7 @@ const Hero = () => {
                     <li>
                       <a
                         href="/#"
-                        className="inline-flex items-center justify-center px-5 py-3 text-center text-base font-medium text-gray-50 hover:text-sky-500 dark:text-white"
+                        className="inline-flex items-center justify-center px-5 py-3 text-center text-base font-medium text-gray-50 hover:text-sky-500"
                       >
                         <span className="mr-2">
                           <Pill className="flex-shrink-0 h-5 w-5"/>

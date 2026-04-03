@@ -20,7 +20,7 @@ export default function ListPanel({appointments,role}:{appointments:Appointment[
               key={item.id} 
               href={`/dashboard/${role==="USER"?"user":"doctor"}/appointments/view/${item.id}`} 
               className={cn(
-                "border border-gray-300 mb-2 shadow-sm text-xs bg-white py-3 px-2 inline-block w-full rounded-md dark:bg-slate-950", 
+                "border border-gray-300 dark:border-gray-700 mb-2 shadow-sm text-xs bg-white py-3 px-2 inline-block w-full rounded-md dark:bg-slate-950", 
                 pathname===`/dashboard/doctor/appointments/view/${item.id}` && "border-teal-600"
               )}
             >

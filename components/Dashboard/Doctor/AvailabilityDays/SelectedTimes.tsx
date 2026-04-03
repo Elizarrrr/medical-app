@@ -38,7 +38,7 @@ export default function SelectedTimes({
                     {
                         timesArray.map((time,i)=>{
                             return(
-                                <button onClick={()=>handleAddTime(time)} key={i} className="flex items-center justify-center py-2 px-2 border border-slate-200 dark:border-gray-600 rounded-md">
+                                <button onClick={()=>handleAddTime(time)} key={i} className="flex items-center justify-center py-2 px-2 border border-slate-300 dark:border-gray-600 rounded-md">
                                     <span>{time}</span>
                                     <Plus className="w-3 h-3 ml-2"/>
                                 </button>

@@ -17,7 +17,7 @@ export default function PatientPanel({patients,role}:{patients:PatientProps[];ro
         <ScrollArea className="h-96 w-full">
           {patients.map((item) => (
             <Link key={item.patientId} href={`/dashboard/doctor/patients/view/${item.patientId}`} 
-              className={cn("border border-gray-300 mb-2 shadow-sm text-xs bg-white py-3 px-2 inline-block w-full rounded-md dark:bg-slate-950", 
+              className={cn("border border-gray-300 dark:border-gray-700 mb-2 shadow-sm text-xs bg-white py-3 px-2 inline-block w-full rounded-md dark:bg-slate-950", 
               pathname===`/dashboard/doctor/patients/view/${item.patientId}` && "border-teal-600"
               )}
             >

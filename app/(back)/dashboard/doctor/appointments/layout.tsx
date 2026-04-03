@@ -29,7 +29,9 @@ export default async function AppointmentLayout({children}:{children:ReactNode})
                 {/*List Panel*/}
                 <div className="col-span-4 py-3 border-r">
                     <PanelHeader title="Appointments" count={appointments.length??0} icon={AlarmClock}/>
-                    <div className="px-6"><ListPanel appointments={appointments} role={user?.role}/></div>          
+                    <div className="px-6">
+                        <ListPanel appointments={appointments} role={user?.role}/>
+                    </div>          
                 </div>
 
                 {/*Display Panel*/}

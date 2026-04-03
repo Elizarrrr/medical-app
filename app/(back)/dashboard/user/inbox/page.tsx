@@ -1,16 +1,16 @@
 import React from "react";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { getInboxMessages } from "@/actions/inbox";
 import NewButton from "@/components/Dashboard/Doctor/NewButton";
 import HomeDisplayCard from "@/components/Dashboard/Doctor/HomeDisplayCard";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 import NotAuthorized from "@/components/NotAuthorized";
+import { getInboxMessages } from "@/actions/inbox";
 
 export default async function page() {
 
     const session = await getServerSession(authOptions);
     const user = session?.user
-    if(user?.role !=="DOCTOR"){
+    if(user?.role !=="USER"){
         return(
             <NotAuthorized/>
         );
@@ -24,7 +24,7 @@ export default async function page() {
                     <NewButton title="New Message" href="/dashboard/doctor/inbox/new"/>
                 </div>
             </div>
-            <HomeDisplayCard title="Message" newAppointmentLink="/dashboard/doctor/inbox/new" count={messages.length}/>
+            <HomeDisplayCard title="Message" newAppointmentLink="/dashboard/user/inbox/new" count={messages.length}/>
         </div>
     );
 }
