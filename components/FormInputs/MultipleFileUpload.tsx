@@ -68,7 +68,7 @@ export default function MultipleFileUpload({
                                     <File className="w-6 h-6 flex-shrink-0 mr-2"/>
                                     <div className="flex flex-col">
                                         <span className="line-clamp-1">{file.title}</span>
-                                        <span className="text-sm">{(file.size/1000).toFixed(2)} KB</span>
+                                        {file.size>0 && <span className="text-sm">{(file.size/1000).toFixed(2)} KB</span>}
                                     </div>
                                 </div>
                             </div>

@@ -15,69 +15,38 @@ import { Button } from "@/components/ui/button"
 import { getDoctors } from "@/actions/users"
 import { getAdminAnalytics } from "@/actions/stats"
 
-export default async function Dashboard() {
+import { getAppointments } from "@/actions/appointments"
+import { PatientProps } from "@/app/(back)/dashboard/patients/layout"
 
-  // const stats = await getStats();
-  // const statsCards = [
-  //   {
-  //     title:"Doctors",
-  //     icon:Users,
-  //     count:stats.doctors,
-  //     href:"/dashboard/doctors"
-  //   },
-  //   {
-  //     title:"Patients",
-  //     icon:UsersRound,
-  //     count:stats.patients,
-  //     href:"/dashboard/patients"
-  //   },
-  //   {
-  //     title:"Appointments",
-  //     icon:CalendarDays,
-  //     count:stats.appointments,
-  //     href:"/dashboard/appointments"
-  //   },
-  //   {
-  //     title:"Services",
-  //     icon:LayoutGrid,
-  //     count:stats.services,
-  //     href:"/dashboard/services"
-  //   },
-  // ]
+export default async function Dashboard() {
 
   const analytics = await getAdminAnalytics();
   const doctors = await getDoctors()||[];
   const session = await getServerSession(authOptions);
   const user = session?.user;
 
+  const appointments = (await getAppointments()).data||[];
+  const uniquePatientsMap = new Map();
+
+  appointments.forEach((app)=>{
+      if (!uniquePatientsMap.has(app.patientId)){
+          uniquePatientsMap.set(app.patientId, {
+              patientId:app.patientId,
+              name:`${app.firstName} ${app.lastName}`,
+              email:app.email,
+              phone:app.phone,
+              location:app.location,
+              gender:app.gender,
+              occupation:app.occupation,
+              dob:app.dob,
+          });
+      }
+  });
+
+  const patients = Array.from(uniquePatientsMap.values()) as PatientProps[];
+
   return (
     <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">
-        {/* <div className="grid gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
-
-          {
-            statsCards.map((item,i)=>{
-              const Icon = item.icon
-              return (
-                <Card key={i}>
-                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle className="text-sm font-medium">
-                      {item.title}
-                    </CardTitle>
-                    <Icon className="h-4 w-4 text-muted-foreground" />
-                  </CardHeader>
-                  <CardContent>
-                    <div className="text-2xl font-bold">{item.count}</div>
-                    <Link href={item.href} className="text-xs text-muted-foreground">
-                      View all {item.title}
-                    </Link>
-                  </CardContent>
-                </Card>
-              );
-            })
-          }
-         
-        </div> */}
-
          <h1 className="scroll-m-20 text-2xl font-extrabold tracking-tight mb-3">
               Welcome, Admin {user?.name}
           </h1>
@@ -90,7 +59,7 @@ export default async function Dashboard() {
           </div>
 
         <div className="grid gap-4 md:gap-8 lg:grid-cols-2">
-          <Card>
+          <Card className="border border-gray-300 dark:border-gray-700">
             <CardHeader>
               <div className="flex items-center justify-between">
                 <CardTitle>Recent Doctors</CardTitle>
@@ -100,8 +69,7 @@ export default async function Dashboard() {
               </div>
             </CardHeader>
             <CardContent className="grid gap-8">
-              {
-                doctors && doctors.slice(0,5).map((doctor)=>{
+              {doctors && doctors.slice(0,5).map((doctor)=>{
                   const initials = generateInitials(doctor.name);
                   return(
                     <div key={doctor.id} className="flex items-center gap-4">
@@ -126,8 +94,43 @@ export default async function Dashboard() {
               }
             </CardContent>
           </Card>
+          
+          <Card className="border border-gray-300 dark:border-gray-700">
+            <CardHeader>
+              <div className="flex items-center justify-between">
+                <CardTitle>Recent Patients</CardTitle>
+                <Button asChild>
+                  <Link href="/dashboard/doctors">View All</Link>
+                </Button>
+              </div>
+            </CardHeader>
+            <CardContent className="grid gap-8">
+              {patients && patients.slice(0,5).map((patient)=>{
+                  const initials = generateInitials(patient.name);
+                  return(
+                    <div key={patient.patientId} className="flex items-center gap-4">
+                      <Avatar className="hidden h-9 w-9 sm:flex">
+                        {/* <AvatarImage src={patient.profilePicture??""} alt="Avatar" /> */}
+                        <AvatarFallback>{initials}</AvatarFallback>
+                      </Avatar>
+                      <div className="grid gap-1">
+                        <p className="text-sm font-medium leading-none">
+                          {patient.name}
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                          {patient.email}
+                        </p>
+                      </div>
+                      <div className="ml-auto font-medium">
+                        <button className="text-sm">Approve</button>
+                      </div>
+                    </div>
+                  );
+                })
+              }
+            </CardContent>
+          </Card>
         </div>
-        
       </main>
   );
 }

@@ -7,7 +7,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { usePathname, useRouter } from "next/navigation";
 import React from "react";
-import { DoctorProfile, Specialty } from "@prisma/client";
+import { Specialty } from "@prisma/client";
 import { useOnboardingContext } from "@/context/context";
 import { createDoctorProfile, updateDoctorProfile } from "@/actions/onboarding";
 import { generateTrackingNumber } from "@/lib/generateTracking";
@@ -22,7 +22,6 @@ export type StepFormProps={
   nextPage?:string;
   formId?:string;
   specialties?:Specialty[];
-  doctorProfile:DoctorProfile
 };
 
 export default function BioDataForm({
@@ -32,29 +31,46 @@ export default function BioDataForm({
   userId,
   nextPage,
   formId="",
-  doctorProfile
 }:StepFormProps) {
-
   //GET CONTEXT DATA
-  const {truckingNumber,setTruckingNumber,doctorProfileId,setDoctorProfileId,} = useOnboardingContext();
+  const {
+    truckingNumber,
+    setTruckingNumber,
+    doctorProfileId,
+    setDoctorProfileId,
+  } = useOnboardingContext();
   console.log(truckingNumber,doctorProfileId);
   const [isLoading, setIsLoading]=useState(false);
-  const {savedDBData,setBioData} = useOnboardingContext();
-  const initialDOB = doctorProfile.dob||savedDBData.dob;
-  // const [dob, setDOB] = useState<Date>(initialDOB);
-  const [dob, setDOB] = useState<Date | undefined>(initialDOB);
-  // const defaultData = bioData||savedDBData;
+  const {bioData, savedDBData, setBioData} = useOnboardingContext();
+  const initialDOB = bioData.dob||savedDBData.dob;
+  const [dob, setDOB] = useState<Date>(initialDOB); // const [dob, setDOB] = useState<Date | undefined>(initialDOB);
+  const defaultData = bioData||savedDBData;
   console.log(savedDBData);
-  const genderOptions = [{label:"Male",value:"male"},{   label:"Female",value:"female"}];
-  const {register,handleSubmit,formState:{errors}}=useForm<BioDataFormProps>({
+
+  const genderOptions = [
+    {
+      label:"Male",
+      value:"male"
+    },
+    { 
+      label:"Female",
+      value:"female"
+    }
+  ];
+
+  const {
+    register,
+    handleSubmit,
+    formState:{errors}
+  }=useForm<BioDataFormProps>({
     defaultValues:{
-      firstName:doctorProfile.firstName||savedDBData.firstName,
-      lastName:doctorProfile.lastName||savedDBData.lastName,
-      dob:doctorProfile.dob||savedDBData.dob,
-      gender:doctorProfile.gender||savedDBData.gender,
-      page:doctorProfile.page||savedDBData.page,
+      firstName:bioData.firstName||savedDBData.firstName,
+      lastName:bioData.lastName||savedDBData.lastName,
+      dob:bioData.dob||savedDBData.dob,
+      gender:bioData.gender||savedDBData.gender,
+      page:bioData.page||savedDBData.page,
       //userId:bioData.userId||savedDBData.userId,
-      trackingNumber:doctorProfile.trackingNumber||savedDBData.trackingNumber,
+      trackingNumber:bioData.trackingNumber||savedDBData.trackingNumber,
     },
   });
   const router=useRouter();
@@ -77,7 +93,7 @@ export default function BioDataForm({
     try{
       //save data to db
       if(formId){
-        const res = await updateDoctorProfile(doctorProfile.id,data);
+        const res = await updateDoctorProfile(formId,data);
 
         if(res && res.status===201){
           setIsLoading(false);

@@ -5,7 +5,10 @@ import Link from "next/link";
 import { getTimeAgo } from "@/utils/timeAgo";
 import { cn } from "@/lib/utils";
 
-export default async function page({params:{id}}:{params:{id:string}}) {
+// export default async function page({params:{id}}:{params:{id:string}}) {
+//     const appointments = (await getPatientAppointments(id)).data||[];
+export default async function page({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
     const appointments = (await getPatientAppointments(id)).data||[];
     return(
         <div className="p-4">
@@ -13,7 +16,7 @@ export default async function page({params:{id}}:{params:{id:string}}) {
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                 {appointments.map((item)=>{
                     return(
-                        <Link key={item.id} href={`/dashboard/doctor/appointments/view/${item.id}`} className={cn("border border-gray-300 mb-2 shadow-sm text-xs bg-white py-3 px-2 inline-block w-full rounded-md dark:bg-black")}>
+                        <Link key={item.id} href={`/dashboard/doctor/appointments/view/${item.id}`} className={cn("border border-gray-300 dark:border-gray-700 mb-2 shadow-sm text-xs bg-white py-3 px-2 inline-block w-full rounded-md dark:bg-black")}>
                         {/* <Link key={item.id} href={`/dashboard/doctor/appointments/view/${item.id}`} 
                         className={cn(
                         "border border-red-300 mb-2 shadow-sm text-xs bg-white py-3 px-2 

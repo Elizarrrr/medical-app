@@ -16,7 +16,7 @@ export default function LoginFormWithBg() {
     const [isLoading, setIsLoading] = useState(false);
     const [showNotification, setShowNotification] = useState(false);
     const searchParams = useSearchParams();
-    const returnUrl = searchParams.get("returnUrl") || "dashboard";
+    const returnUrl = searchParams.get("returnUrl") || "/dashboard";
     const router = useRouter();
     const { register, handleSubmit, reset, formState: { errors } } = useForm<LoginInputProps>();
     

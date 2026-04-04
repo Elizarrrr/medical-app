@@ -1,7 +1,7 @@
 "use server";
 
 import { prismaClient } from "@/lib/db";
-import { AlarmClock, CalendarDays, LayoutGrid, LucideIcon, Mail, Users, UsersRound } from "lucide-react";
+import { AlarmClock, LayoutGrid, LucideIcon, Mail, Users, UsersRound } from "lucide-react";
 import { getAppointments, getDoctorAppointments, getPatientAppointments } from "./appointments";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
@@ -52,6 +52,8 @@ export async function getAdminAnalytics(){
     const services = (await getServices()).data||[];
     const uniquePatientsMap = new Map();
     
+    // const messages = (await getInboxMessages(user!.id)).data||[];
+    
     appointments.forEach((app)=>{
         if (!uniquePatientsMap.has(app.patientId)){
             uniquePatientsMap.set(app.patientId, {
@@ -66,40 +68,39 @@ export async function getAdminAnalytics(){
             });
         }
     });
-    
-  const patients = Array.from(uniquePatientsMap.values());
-  // const messages = (await getInboxMessages(user!.id)).data||[];
 
-  const analytics = [
-    {
-      title:"Doctors",
-      count:doctors.length,
-      icon:Users,
-      unit:"",
-      detailLink:"/dashboard/doctors"
-    },
-    {
-      title:"Patients",
-      count:patients.length,
-      icon:UsersRound,
-      unit:"",
-      detailLink:"/dashboard/patients"
-    },
-    {
-      title:"Appointments",
-      count:appointments.length??0,
-      icon:CalendarDays,
-      unit:"",
-      detailLink:"/dashboard/appointments"
-    },
-    {
-      title:"Services",
-      count:services.length,
-      icon:LayoutGrid,
-      unit:"",
-      detailLink:"/dashboard/services"
-    },
-  ];
+    const patients = Array.from(uniquePatientsMap.values());
+
+    const analytics = [
+      {
+        title:"Doctors",
+        count:doctors.length,
+        icon:Users,
+        unit:"",
+        detailLink:"/dashboard/doctors"
+      },
+      {
+        title:"Patients",
+        count:patients.length,
+        icon:UsersRound,
+        unit:"",
+        detailLink:"/dashboard/patients"
+      },
+      {
+        title:"Appointments",
+        count:appointments.length??0,
+        icon:AlarmClock,
+        unit:"",
+        detailLink:"/dashboard/appointments"
+      },
+      {
+        title:"Services",
+        count:services.length,
+        icon:LayoutGrid,
+        unit:"",
+        detailLink:"/dashboard/services"
+      },
+    ];
 
   return analytics as DoctorAnalyticsProps[];
 
@@ -130,34 +131,34 @@ export async function getDoctorAnalytics(){
               dob:app.dob,
           });
       }
-  });
+    });
 
-  const patients = Array.from(uniquePatientsMap.values());
-  const messages = (await getInboxMessages(user!.id)).data||[];
+    const patients = Array.from(uniquePatientsMap.values());
+    const messages = (await getInboxMessages(user!.id)).data||[];
 
-  const analytics = [
-    {
-      title:"Appointments",
-      count:appointments.length??0,
-      icon:AlarmClock,
-      unit:"",
-      detailLink:"/dashboard/doctor/appointments"
-    },
-    {
-      title:"Patients",
-      count:patients.length,
-      icon:Users,
-      unit:"",
-      detailLink:"/dashboard/doctor/patients"
-    },
-    {
-      title:"Inbox",
-      count:messages.length,
-      icon:Mail,
-      unit:"",
-      detailLink:"/dashboard/doctor/inbox"
-    },
-  ];
+    const analytics = [
+      {
+        title:"Appointments",
+        count:appointments.length??0,
+        icon:AlarmClock,
+        unit:"",
+        detailLink:"/dashboard/doctor/appointments"
+      },
+      {
+        title:"Patients",
+        count:patients.length,
+        icon:Users,
+        unit:"",
+        detailLink:"/dashboard/doctor/patients"
+      },
+      {
+        title:"Inbox",
+        count:messages.length,
+        icon:Mail,
+        unit:"",
+        detailLink:"/dashboard/doctor/inbox"
+      },
+    ];
 
   return analytics as DoctorAnalyticsProps[];
 

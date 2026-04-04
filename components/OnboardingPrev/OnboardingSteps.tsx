@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import React from "react";
 import { useOnboardingContext } from "../../context/context";
-import { DoctorProfile, Specialty } from "@prisma/client";
+import { Specialty } from "@prisma/client";
 import BioDataForm from "./BioDataForm";
 import ProfileInfoForm from "./ProfileInfoForm";
 import ContactInfo from "./ContactInfo";
@@ -13,11 +13,9 @@ export default function OnboardingSteps({
     id,
     // specialties, // this is the unused prop
     specialties: _specialties, // eslint-disable-line @typescript-eslint/no-unused-vars
-    doctorProfile
 }: {
     id: string;
     specialties: Specialty[];
-    doctorProfile: DoctorProfile;
 }) {
     const pathname = usePathname();
     // console.log(pathname);
@@ -36,8 +34,7 @@ export default function OnboardingSteps({
                     description="Please fill in your Bio Data Information" 
                     page={page} 
                     nextPage="profile" 
-                    formId={doctorProfile.id?doctorProfileId:savedDBData.id} 
-                    doctorProfile={doctorProfile}
+                    formId={doctorProfileId?doctorProfileId:savedDBData.id} 
                 />
             ),
         },
@@ -51,8 +48,7 @@ export default function OnboardingSteps({
                     description="Please fill in your Profile Information" 
                     page={page} 
                     nextPage="contact" 
-                    formId={doctorProfile.id?doctorProfileId:savedDBData.id} 
-                    doctorProfile={doctorProfile}
+                    formId={doctorProfileId?doctorProfileId:savedDBData.id} 
                 />
             ),
         },
@@ -66,8 +62,7 @@ export default function OnboardingSteps({
                     description="Please fill in your Contact Information" 
                     page={page} 
                     nextPage="final" 
-                    formId={doctorProfile.id?doctorProfileId:savedDBData.id} 
-                    doctorProfile={doctorProfile}
+                    formId={doctorProfileId?doctorProfileId:savedDBData.id} 
                 />
             ),
         },

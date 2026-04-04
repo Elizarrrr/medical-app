@@ -15,19 +15,19 @@ export default function ContactInfo({
   page,
   title,
   description,
-  doctorProfile
+  formId="",
 }:StepFormProps) {
-  const {savedDBData,setContactData}=useOnboardingContext();
+  const {contactData,savedDBData,setContactData}=useOnboardingContext();
   const [isLoading, setIsLoading]=useState(false);
   console.log(savedDBData);
 
   const {register,handleSubmit,formState:{errors}}=useForm<ContactInfoFormProps>({
     defaultValues:{
-      phone:doctorProfile.phone||savedDBData.phone,
-      email:doctorProfile.email||savedDBData.email,
-      page:doctorProfile.page||savedDBData.page,
-      country:doctorProfile.country||savedDBData.country,
-      city:doctorProfile.city||savedDBData.city,
+      phone:contactData.phone||savedDBData.phone,
+      email:contactData.email||savedDBData.email,
+      page:contactData.page||savedDBData.page,
+      country:contactData.country||savedDBData.country,
+      city:contactData.city||savedDBData.city,
     },
   });
   const router=useRouter();
@@ -41,7 +41,7 @@ export default function ContactInfo({
 
     try{
       if(isOnboarding){
-        const res = await completeProfile(doctorProfile.id,data);
+        const res = await completeProfile(formId,data);
 
         setContactData(data);
         if(res?.status===201){
@@ -58,7 +58,7 @@ export default function ContactInfo({
         }
 
       }else{
-        const res = await updateDoctorProfile(doctorProfile.id,data);
+        const res = await updateDoctorProfile(formId,data);
 
         setContactData(data);
         if(res?.status===201){
