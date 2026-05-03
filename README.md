@@ -1,36 +1,129 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Medical Appointment Booking Platform
 
-## Getting Started
+A modern healthcare marketplace connecting patients with doctors through an intuitive booking system. Built with Next.js 16, React 19, and TypeScript.
 
-First, run the development server:
+## 🎯 Overview
+
+Three-tier healthcare platform enabling:
+- **Patients**: Browse doctors, book appointments, make payments
+- **Doctors**: Manage profiles, availability, and appointments
+- **Admins**: Oversee platform operations and commissions
+
+## ✨ Key Features
+
+- **Advanced Search & Filtering** - Search by services, specialties, operation mode (Telehealth/In-person)
+- **Smart Booking System** - Interactive calendar with real-time availability
+- **Doctor Onboarding** - Multi-step verification process with document uploads
+- **Dual Operation Modes** - Support for both telehealth and in-person consultations
+- **Email Notifications** - Automated appointment confirmations via Resend
+- **Secure Authentication** - NextAuth.js with role-based access control
+- **Payment Integration** - Stripe for secure transactions (planned)
+
+## 🚀 Tech Stack
+
+### Core
+- **Framework**: Next.js 16.1.5 (App Router)
+- **Language**: TypeScript 5
+- **Styling**: Tailwind CSS 3.4.19
+- **UI Components**: shadcn/ui, Radix UI, Flowbite React
+
+### Backend & Database
+- **Database**: MongoDB Atlas
+- **ORM**: Prisma 5.22.0
+- **Authentication**: NextAuth.js 4.24.13
+
+### Additional Services
+- **File Uploads**: UploadThing 7.7.4
+- **Email**: Resend 6.9.2
+- **Payments**: Stripe (integration ready)
+- **Animations**: Framer Motion 12.29.2
+
+### Developer Tools
+- **Form Handling**: React Hook Form 7.71.2 + Zod 4.3.6
+- **Date Handling**: React DatePicker 9.1.0
+- **Notifications**: React Hot Toast 2.6.0
+
+## 🔧 Installation
 
 ```bash
+# Clone repository
+git clone <repository-url>
+cd medical-app
+
+# Install dependencies
+npm install
+
+# Setup environment variables
+cp .env.example .env
+# Add your MongoDB, Resend, NextAuth, and UploadThing credentials
+
+# Generate Prisma client
+npx prisma generate
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📋 Environment Variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```env
+DATABASE_URL="mongodb+srv://..."
+NEXTAUTH_SECRET="..."
+NEXTAUTH_URL="http://localhost:3000"
+RESEND_API_KEY="..."
+UPLOADTHING_SECRET="..."
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🌐 Live Demo
 
-## Learn More
+**Production URL**: https://medical-8if9bgusq-elizarrrrs-projects.vercel.app/
 
-To learn more about Next.js, take a look at the following resources:
+## 📱 User Flows
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Patient Journey
+1. Browse doctors by service/specialty/mode
+2. Select doctor and view availability
+3. Book appointment with preferred time slot
+4. Receive email confirmation
+5. Access appointment details and meeting links
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Doctor Journey
+1. Register with role selection (Free/Professional/Enterprise)
+2. Complete multi-step onboarding (Bio Data → Profile → Contact → Availability)
+3. Upload credentials and profile picture
+4. Set weekly availability schedule
+5. Manage incoming appointment requests
+6. Approve/reject appointments with meeting links
 
-## Deploy on Vercel
+### Admin Capabilities
+- Manage services and specialties
+- Monitor platform activity
+- Handle doctor verifications
+- Track appointments and commissions
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🗂️ Project Structure
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+medical-app/
+├── app/                    # Next.js app directory
+│   ├── (front)/           # Public-facing pages
+│   ├── (back)/            # Dashboard/admin pages
+│   └── api/               # API routes
+├── components/            # React components
+├── actions/               # Server actions
+├── lib/                   # Utilities and configs
+├── prisma/               # Database schema
+└── types/                # TypeScript definitions
+```
+
+## 🎨 Features Highlight
+
+- **Responsive Design** - Mobile-first approach with dark mode support
+- **Real-time Updates** - Server actions with path revalidation
+- **Type Safety** - Full TypeScript coverage
+- **Accessible UI** - WCAG compliant components
+- **SEO Optimized** - Server-side rendering with metadata
+
+---
+
+**Built with ❤️ using Next.js and modern web technologies**
